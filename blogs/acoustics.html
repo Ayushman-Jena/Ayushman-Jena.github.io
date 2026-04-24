@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fundamentals of Acoustic Wave Equations</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <nav class="container">
+        <h2 class="logo">AJ</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="section container">
+
+    <h1>Fundamentals of Acoustic Wave Equations</h1>
+    <p class="subtitle">
+        A foundational understanding of how sound propagates in a medium
+    </p>
+
+    <!-- INTRO -->
+    <h2>Introduction</h2>
+    <p>
+    Acoustic wave propagation forms the basis of numerous engineering applications, 
+    including medical ultrasound, sonar systems, and non-destructive testing. 
+    Understanding the governing equations allows us to model how pressure waves 
+    travel through different media.
+    </p>
+
+    <!-- BASIC VARIABLES -->
+    <h2>Key Physical Quantities</h2>
+    <ul>
+        <li><strong>Pressure (p):</strong> Deviation from ambient pressure</li>
+        <li><strong>Particle Velocity (u):</strong> Velocity of fluid particles</li>
+        <li><strong>Density (ρ):</strong> Mass per unit volume</li>
+        <li><strong>Speed of Sound (c):</strong> Propagation speed of waves in medium</li>
+    </ul>
+
+    <!-- GOVERNING EQUATIONS -->
+    <h2>Governing Equations</h2>
+
+    <h3>1. Continuity Equation</h3>
+    <p>
+    Represents conservation of mass in a compressible medium:
+    </p>
+    <p>
+    ∂ρ/∂t + ∇·(ρu) = 0
+    </p>
+
+    <h3>2. Momentum Equation (Euler’s Equation)</h3>
+    <p>
+    Derived from Newton’s second law:
+    </p>
+    <p>
+    ρ (∂u/∂t + u·∇u) = -∇p
+    </p>
+
+    <h3>3. Equation of State</h3>
+    <p>
+    Relates pressure and density variations:
+    </p>
+    <p>
+    p = c²ρ
+    </p>
+
+    <!-- LINEARIZATION -->
+    <h2>Linear Acoustic Approximation</h2>
+    <p>
+    For small perturbations, nonlinear terms can be neglected. 
+    This leads to simplified linear equations where acoustic pressure 
+    and velocity are treated as small deviations from equilibrium.
+    </p>
+
+    <!-- WAVE EQUATION -->
+    <h2>Derivation of the Wave Equation</h2>
+    <p>
+    Combining the continuity equation and momentum equation under 
+    linear assumptions leads to the classical acoustic wave equation:
+    </p>
+
+    <p>
+    ∂²p/∂t² = c² ∇²p
+    </p>
+
+    <p>
+    This equation describes how pressure waves propagate through space and time.
+    </p>
+
+    <!-- INTERPRETATION -->
+    <h2>Physical Interpretation</h2>
+    <ul>
+        <li>Wave speed depends on medium properties</li>
+        <li>Solutions represent traveling or standing waves</li>
+        <li>Boundary conditions determine real-world behavior</li>
+    </ul>
+
+    <!-- APPLICATIONS -->
+    <h2>Applications</h2>
+    <ul>
+        <li>Medical Ultrasound Imaging</li>
+        <li>HIFU (High-Intensity Focused Ultrasound)</li>
+        <li>Sonar Systems</li>
+        <li>Non-destructive Testing</li>
+    </ul>
+
+    <!-- EXTENSIONS -->
+    <h2>Beyond the Linear Model</h2>
+    <p>
+    In high-intensity regimes such as HIFU, nonlinear effects become significant. 
+    More advanced models like the Westervelt equation and KZK equation are used 
+    to describe attenuation, diffraction, and nonlinear propagation.
+    </p>
+
+    <!-- CONCLUSION -->
+    <h2>Conclusion</h2>
+    <p>
+    The acoustic wave equation provides the foundation for understanding 
+    sound propagation. Mastery of these fundamentals is essential for 
+    advanced topics such as ultrasound simulation, transducer design, 
+    and acoustic field characterization.
+    </p>
+
+</section>
+
+</body>
+</html>
