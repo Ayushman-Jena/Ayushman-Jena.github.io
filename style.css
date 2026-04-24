@@ -206,3 +206,63 @@ footer {
     color: #8b949e;
     margin-bottom: 5px;
 }
+
+/* BLOG LIST STYLE (NO IMAGES) */
+
+.blog-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: linear-gradient(145deg, #161b22, #1c2128);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #21262d;
+
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.blog-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* LEFT SIDE */
+.blog-content {
+    max-width: 75%;
+}
+
+.blog-content h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.blog-content p {
+    color: #8b949e;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+/* BUTTON */
+.blog-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #238636;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.blog-btn:hover {
+    background: #2ea043;
+}
+
+/* DATE (RIGHT SIDE) */
+.blog-date {
+    color: #58a6ff;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
