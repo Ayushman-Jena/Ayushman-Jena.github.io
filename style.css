@@ -169,3 +169,21 @@ li {
     text-decoration: none;
     color: inherit;
 }
+
+/* CARD IMAGE */
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Improve spacing */
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.95rem;
+}
