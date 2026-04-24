@@ -187,3 +187,12 @@ li {
 .card p {
     font-size: 0.95rem;
 }
+.card img {
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+
