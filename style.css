@@ -195,4 +195,21 @@ li {
     transform: scale(1.05);
 }
 
+/* PROJECT PAGE */
+.subtitle {
+    color: #8b949e;
+    margin-bottom: 30px;
+}
+
+.project-image {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.project-image img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 10px;
+}
+
 
