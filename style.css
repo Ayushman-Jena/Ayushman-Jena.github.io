@@ -61,7 +61,6 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-
     background: radial-gradient(circle at center, #161b22, #0d1117);
 }
 
@@ -83,7 +82,7 @@ nav a:hover {
     border-bottom: 1px solid #21262d;
 }
 
-/* Fix scroll offset for navbar */
+/* Scroll offset for fixed navbar */
 section {
     scroll-margin-top: 80px;
 }
@@ -98,46 +97,65 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    align-items: stretch; /* FIX uneven heights */
 }
 
-/* CARDS */
+/* CARDS (CLEAN VERSION) */
 .card {
     background: linear-gradient(145deg, #161b22, #1c2128);
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
-    width: 300px;
     border: 1px solid #21262d;
     transition: all 0.3s ease;
+
+    width: 300px;
+    display: block;
+    text-decoration: none;
+    color: #e6edf3;
+
+    position: relative;
+    overflow: hidden; /* 🔥 FIXES BLACK OVERFLOW ISSUE */
 }
 
+/* Hover */
 .card:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
+/* IMAGE */
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: block;
+    transition: transform 0.4s ease;
 }
 
-/* -------------------- */
-/* FIXED ANIMATION PART */
-/* -------------------- */
-
-/* Default state */
-.fade-in {
-    opacity: 1;   /* FIX: was 0 (causing invisible sections) */
-    transform: translateY(0);
-    transition: all 0.8s ease;
+.card:hover img {
+    transform: scale(1.05);
 }
 
-/* When JS works, it will enhance animation */
-.fade-in.show {
-    opacity: 1;
-    transform: translateY(0);
+/* TEXT */
+.card h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
 }
 
+.card p {
+    color: #8b949e;
+    font-size: 0.95rem;
+}
+
+/* REMOVE nested link issues */
+.card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* LISTS */
 ul {
     margin-top: 10px;
     padding-left: 20px;
@@ -148,51 +166,22 @@ li {
     margin-bottom: 8px;
 }
 
-/* REMOVE BLUE LINK COLOR FROM CARDS */
-.card {
-    text-decoration: none;
-    color: #e6edf3;  /* light white */
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
 }
 
-/* Title inside card */
-.card h3 {
-    color: #ffffff;
+/* ANIMATION SAFE VERSION */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
 }
 
-/* Description inside card */
-.card p {
-    color: #8b949e;
-}
-
-/* Remove link underline completely */
-.card a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* CARD IMAGE */
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-/* Improve spacing */
-.card h3 {
-    margin-bottom: 10px;
-}
-
-.card p {
-    font-size: 0.95rem;
-}
-.card img {
-    transition: transform 0.4s ease;
-}
-
-.card:hover img {
-    transform: scale(1.05);
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* PROJECT PAGE */
@@ -211,5 +200,3 @@ li {
     max-width: 800px;
     border-radius: 10px;
 }
-
-
