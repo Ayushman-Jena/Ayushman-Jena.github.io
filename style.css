@@ -200,3 +200,9 @@ footer {
     max-width: 800px;
     border-radius: 10px;
 }
+
+.blog-date {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-bottom: 5px;
+}
