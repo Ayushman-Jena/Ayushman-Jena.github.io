@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Axis Hydrophone Scanning System</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <nav class="container">
+        <h2 class="logo">AJ</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="section container">
+
+    <h1>3-Axis Hydrophone Scanning System</h1>
+    <p class="subtitle">
+        Automated Acoustic Field Characterization System for HIFU Transducers
+    </p>
+
+    <!-- HERO IMAGE -->
+    <div class="project-image">
+        <img src="../assets/images/hydrophone-setup.jpg" alt="Hydrophone Setup">
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2>Overview</h2>
+    <p>
+    This project focuses on the development of a 3-axis motion-controlled system 
+    for precise acoustic field mapping of High-Intensity Focused Ultrasound (HIFU) transducers. 
+    The system integrates hardware control, data acquisition, and signal processing 
+    for accurate pressure and intensity estimation.
+    </p>
+
+    <!-- PROBLEM -->
+    <h2>Problem Statement</h2>
+    <p>
+    Characterizing the acoustic field of a focused ultrasound transducer requires 
+    high spatial resolution, stable positioning, and synchronized data acquisition. 
+    Commercial systems are expensive and inflexible, motivating the development 
+    of a custom experimental platform.
+    </p>
+
+    <!-- SYSTEM ARCHITECTURE -->
+    <h2>System Architecture</h2>
+    <ul>
+        <li>3-Axis Motion System (Stepper Motors + Lead Screw)</li>
+        <li>Arduino Mega + TB6560 Drivers</li>
+        <li>Oscilloscope (Keysight DSOX1202A)</li>
+        <li>MATLAB VISA Interface for Data Logging</li>
+        <li>Python for Data Processing & Visualization</li>
+    </ul>
+
+    <!-- IMPLEMENTATION -->
+    <h2>Implementation</h2>
+    <p>
+    The system operates using a synchronized motion-control and measurement protocol. 
+    At each spatial point, the hydrophone records voltage signals which are converted 
+    into acoustic pressure values. Data is logged via MATLAB and processed using Python 
+    to generate intensity maps.
+    </p>
+
+    <!-- RESULTS -->
+    <h2>Results</h2>
+    <p>
+    The system successfully generated:
+    </p>
+    <ul>
+        <li>Axial intensity profiles</li>
+        <li>2D focal plane maps</li>
+        <li>3D acoustic intensity visualization</li>
+    </ul>
+
+    <!-- RESULT IMAGE -->
+    <div class="project-image">
+        <img src="../assets/images/hydrophone-plot.jpg" alt="Acoustic Plot">
+    </div>
+
+    <!-- LEARNINGS -->
+    <h2>Key Learnings</h2>
+    <ul>
+        <li>Mechanical stability is critical for high-resolution scans</li>
+        <li>Reflections significantly affect measurement accuracy</li>
+        <li>Signal processing is essential for reliable intensity estimation</li>
+    </ul>
+
+</section>
+
+</body>
+</html>
