@@ -345,3 +345,25 @@ footer {
 .btn:hover {
     background: #2ea043;
 }
+
+/* Make entire card clickable cleanly */
+.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+/* Small link indicator */
+.card-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #58a6ff;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.card:hover .card-link {
+    transform: translateX(5px);
+}
