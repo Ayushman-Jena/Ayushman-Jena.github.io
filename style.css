@@ -418,3 +418,67 @@ footer {
     width: 18px;
     height: 18px;
 }
+
+/* LAYOUT */
+.edu-layout {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* LEFT SIDE */
+.edu-main {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* RIGHT SIDE */
+.edu-summary {
+    flex: 1;
+}
+
+/* CARD */
+.edu-card {
+    background: linear-gradient(145deg, #161b22, #1c2128);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #21262d;
+    transition: 0.3s;
+}
+
+/* HOVER */
+.edu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* TITLE */
+.edu-card h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.edu-card p {
+    color: #8b949e;
+    font-size: 0.95rem;
+}
+
+/* TAG */
+.edu-tag {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    background: #21262d;
+    border-radius: 6px;
+    color: #c9d1d9;
+}
+
+/* SUMMARY CARD SPECIAL */
+.summary-card hr {
+    margin: 15px 0;
+    border: 0.5px solid #30363d;
+}
