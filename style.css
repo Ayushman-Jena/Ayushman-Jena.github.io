@@ -412,3 +412,9 @@ footer {
 .contact-btn i {
     font-size: 1.2rem;
 }
+
+/* ORCID ICON FIX */
+.contact-btn img.icon {
+    width: 18px;
+    height: 18px;
+}
