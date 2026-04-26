@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>COMSOL Simulation of Focused Ultrasound Transducer</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <h2 class="logo">AJ</h2>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../blogs/index.html">Blogs</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="section container blog-page">
+
+  <h1>COMSOL Simulation of Focused Ultrasound Transducer</h1>
+  <p class="subtitle">Modeling Acoustic Field Propagation and Nonlinear Effects</p>
+
+  <!-- INTRO -->
+  <p>
+    This work presents the numerical simulation of a spherical cap piezoelectric transducer 
+    for focused ultrasound applications. The study focuses on analyzing pressure distribution, 
+    intensity profiles, and nonlinear acoustic effects using COMSOL Multiphysics.
+  </p>
+
+  <!-- GEOMETRY -->
+  <h2>1. Geometry and Model Setup</h2>
+
+  <div class="blog-image">
+    <img src="../assets/images/blogs/comsol-geometry.png" alt="COMSOL Geometry">
+  </div>
+
+  <p>
+    The transducer is modeled as a spherical cap structure submerged in a water domain. 
+    The geometry is simplified using an axisymmetric approximation to reduce computational cost 
+    while preserving the focusing behavior.
+  </p>
+
+  <ul>
+    <li>Medium: Water</li>
+    <li>Transducer Type: Piezoelectric (PZT)</li>
+    <li>Frequency Range: ~500 kHz – 700 kHz</li>
+    <li>Simulation Type: Frequency Domain</li>
+  </ul>
+
+  <!-- PRESSURE FIELD -->
+  <h2>2. Acoustic Pressure Distribution</h2>
+
+  <div class="blog-image">
+    <img src="../assets/images/blogs/pressure-field.png" alt="Pressure Field">
+  </div>
+
+  <p>
+    The pressure field shows the propagation of acoustic waves from the transducer surface 
+    into the medium. The interference patterns and wavefront curvature indicate focusing behavior.
+  </p>
+
+  <p>
+    At higher frequencies, stronger confinement of the acoustic beam is observed near the focal region. 
+    The oscillatory pattern corresponds to the compressional and rarefaction phases of the wave.
+  </p>
+
+  <!-- INTENSITY -->
+  <h2>3. Acoustic Intensity Distribution</h2>
+
+  <div class="blog-image">
+    <img src="../assets/images/blogs/intensity.png" alt="Intensity Plot">
+  </div>
+
+  <p>
+    The intensity distribution highlights the focal region where acoustic energy is concentrated. 
+    A sharp high-intensity zone is observed along the axis, confirming effective focusing.
+  </p>
+
+  <p>
+    This is particularly important for applications such as High-Intensity Focused Ultrasound (HIFU), 
+    where energy localization is critical.
+  </p>
+
+  <!-- SPL -->
+  <h2>4. Sound Pressure Level (SPL)</h2>
+
+  <div class="blog-image">
+    <img src="../assets/images/blogs/spl.png" alt="SPL Plot">
+  </div>
+
+  <p>
+    The SPL plot (in dB) provides a logarithmic representation of pressure variations. 
+    It highlights regions of strong acoustic radiation and attenuation.
+  </p>
+
+  <!-- WESTERVELT -->
+  <h2>5. Governing Equation: Westervelt Equation</h2>
+
+  <p>
+    The propagation of high-intensity ultrasound in nonlinear media is governed by the 
+    <strong>Westervelt equation</strong>:
+  </p>
+
+  <p class="equation">
+    ∇²p − (1/c²) ∂²p/∂t² = (β / ρc⁴) ∂²(p²)/∂t² + δ ∇²(∂p/∂t)
+  </p>
+
+  <p>
+    where:
+  </p>
+
+  <ul>
+    <li><strong>p</strong>: Acoustic pressure</li>
+    <li><strong>c</strong>: Speed of sound</li>
+    <li><strong>ρ</strong>: Density of medium</li>
+    <li><strong>β</strong>: Nonlinearity parameter</li>
+    <li><strong>δ</strong>: Diffusivity of sound</li>
+  </ul>
+
+  <p>
+    The equation accounts for:
+  </p>
+
+  <ul>
+    <li>Wave propagation</li>
+    <li>Nonlinear distortion</li>
+    <li>Thermoviscous losses</li>
+  </ul>
+
+  <!-- VOIGT -->
+  <h2>6. Piezoelectric Modeling and Voigt Notation</h2>
+
+  <p>
+    The piezoelectric behavior of the transducer is modeled using constitutive equations 
+    expressed in <strong>Voigt notation</strong>.
+  </p>
+
+  <p>
+    The coupled electromechanical equations are:
+  </p>
+
+  <p class="equation">
+    S = s^E T + d^T E  
+    D = d T + ε^T E
+  </p>
+
+  <p>
+    where:
+  </p>
+
+  <ul>
+    <li><strong>S</strong>: Strain vector</li>
+    <li><strong>T</strong>: Stress vector</li>
+    <li><strong>E</strong>: Electric field</li>
+    <li><strong>D</strong>: Electric displacement</li>
+    <li><strong>d</strong>: Piezoelectric coupling matrix</li>
+    <li><strong>s^E</strong>: Compliance matrix</li>
+    <li><strong>ε^T</strong>: Permittivity matrix</li>
+  </ul>
+
+  <p>
+    In Voigt notation, tensor quantities are reduced into matrix form, enabling efficient 
+    numerical implementation within FEM solvers like COMSOL.
+  </p>
+
+  <!-- CONCLUSION -->
+  <h2>7. Conclusion</h2>
+
+  <p>
+    The simulation successfully demonstrates the focusing characteristics of a spherical cap 
+    ultrasound transducer. The results show strong agreement with theoretical expectations 
+    of beam focusing and intensity localization.
+  </p>
+
+  <p>
+    Future work will include nonlinear simulations using full Westervelt modeling and 
+    experimental validation using hydrophone-based scanning setups.
+  </p>
+
+</section>
+
+</body>
+</html>
