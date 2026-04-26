@@ -493,3 +493,30 @@ footer {
     border-radius: 6px;
     color: white;
 }
+
+.blog-page {
+    max-width: 900px;
+}
+
+.blog-image {
+    margin: 25px 0;
+    text-align: center;
+}
+
+.blog-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.subtitle {
+    color: #8b949e;
+    margin-bottom: 20px;
+}
+
+.equation {
+    background: #161b22;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
+    margin: 10px 0;
+}
