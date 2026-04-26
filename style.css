@@ -482,3 +482,14 @@ footer {
     margin: 15px 0;
     border: 0.5px solid #30363d;
 }
+
+/* ACHIEVEMENT TAG */
+.ach-tag {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    background: #238636;
+    border-radius: 6px;
+    color: white;
+}
