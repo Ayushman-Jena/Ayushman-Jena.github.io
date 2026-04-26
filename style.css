@@ -367,3 +367,48 @@ footer {
 .card:hover .card-link {
     transform: translateX(5px);
 }
+
+/* CONTACT SECTION IMPROVEMENT */
+
+.contact-email {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #8b949e;
+}
+
+/* BUTTON STYLE */
+.contact-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 18px;
+    border-radius: 8px;
+
+    background: linear-gradient(145deg, #161b22, #1c2128);
+    border: 1px solid #30363d;
+
+    color: #c9d1d9;
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.contact-btn:hover {
+    transform: translateY(-3px);
+    background: #238636;
+    border-color: #238636;
+    color: white;
+}
+
+/* ICON SIZE */
+.contact-btn i {
+    font-size: 1.2rem;
+}
