@@ -2,46 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Derivation of Acoustic Wave Equation (Linear to Nonlinear)</title>
+    <title>Acoustic Wave Equation Derivation | Ayushman Jena</title>
 
-    <!-- MathJax for LaTeX -->
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+    <!-- BLOG SPECIFIC STYLING -->
     <style>
-        body {
-            font-family: "Segoe UI", sans-serif;
-            margin: 40px;
-            line-height: 1.7;
-            background-color: #f9fafc;
-            color: #222;
+        .blog-page {
+            max-width: 900px;
         }
-        h1, h2, h3 {
-            color: #0a3d62;
+
+        .subtitle {
+            color: #8b949e;
+            margin-bottom: 10px;
         }
-        .section {
+
+        .blog-meta {
+            color: #6e7681;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .section-block {
             margin-bottom: 40px;
         }
+
         .equation {
-            background: #ffffff;
+            background: #161b22;
             padding: 15px;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid #58a6ff;
+            border-radius: 6px;
             margin: 20px 0;
             overflow-x: auto;
         }
+
         .highlight {
-            background: #eef6ff;
-            padding: 15px;
-            border-radius: 6px;
+            border-left: 4px solid #238636;
+        }
+
+        ul {
+            margin-top: 10px;
+            padding-left: 20px;
+            color: #8b949e;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        mjx-container {
+            font-size: 1.2rem;
         }
     </style>
 </head>
 
 <body>
 
-<h1>Derivation of Acoustic Wave Equation in 3D</h1>
-<p><b>From Continuity Equation to Nonlinear Westervelt Equation</b></p>
+<!-- NAVBAR -->
+<header>
+  <nav class="container">
+    <h2 class="logo">AJ</h2>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../blogs/index.html">Blogs</a></li>
+    </ul>
+  </nav>
+</header>
 
-<div class="section">
+<!-- BLOG CONTENT -->
+<section class="section container blog-page">
+
+<h1>Derivation of Acoustic Wave Equation in 3D</h1>
+<p class="subtitle">From Continuity Equation to Nonlinear Westervelt Equation</p>
+<p class="blog-meta">Published: 2026</p>
+
+<div class="section-block">
 <h2>1. Governing Equations</h2>
 
 <h3>Continuity Equation</h3>
@@ -64,10 +106,9 @@
 p = p(\rho)
 \]
 </div>
-
 </div>
 
-<div class="section">
+<div class="section-block">
 <h2>2. Small Perturbation Approximation</h2>
 
 <div class="equation">
@@ -79,20 +120,19 @@ p &= p_0 + p' \\
 \end{aligned}
 \]
 </div>
-
 </div>
 
-<div class="section">
+<div class="section-block">
 <h2>3. Linearization</h2>
 
-<h3>Continuity Equation</h3>
+<h3>Continuity</h3>
 <div class="equation">
 \[
 \frac{\partial \rho'}{\partial t} + \rho_0 \nabla \cdot \mathbf{v} = 0
 \]
 </div>
 
-<h3>Momentum Equation</h3>
+<h3>Momentum</h3>
 <div class="equation">
 \[
 \rho_0 \frac{\partial \mathbf{v}}{\partial t} = -\nabla p'
@@ -105,55 +145,29 @@ p &= p_0 + p' \\
 p' = c^2 \rho'
 \]
 </div>
-
 </div>
 
-<div class="section">
-<h2>4. Derivation of Linear Wave Equation</h2>
+<div class="section-block">
+<h2>4. Linear Wave Equation</h2>
 
-<h3>Step 1</h3>
-<div class="equation">
-\[
-\rho_0 \frac{\partial}{\partial t} (\nabla \cdot \mathbf{v}) = -\nabla^2 p'
-\]
-</div>
-
-<h3>Step 2</h3>
-<div class="equation">
-\[
-\frac{\partial^2 \rho'}{\partial t^2} + \rho_0 \frac{\partial}{\partial t} (\nabla \cdot \mathbf{v}) = 0
-\]
-</div>
-
-<h3>Step 3</h3>
-<div class="equation">
-\[
-\frac{\partial^2 \rho'}{\partial t^2} - \nabla^2 p' = 0
-\]
-</div>
-
-<h3>Final Linear Wave Equation</h3>
 <div class="equation highlight">
 \[
 \nabla^2 p - \frac{1}{c^2} \frac{\partial^2 p}{\partial t^2} = 0
 \]
 </div>
-
 </div>
 
-<div class="section">
+<div class="section-block">
 <h2>5. Nonlinear Acoustics</h2>
 
-<h3>Nonlinear Equation of State</h3>
 <div class="equation">
 \[
 p = c^2 \rho + \frac{B}{2A} \frac{\rho^2}{\rho_0}
 \]
 </div>
-
 </div>
 
-<div class="section">
+<div class="section-block">
 <h2>6. Westervelt Equation</h2>
 
 <div class="equation highlight">
@@ -167,10 +181,9 @@ p = c^2 \rho + \frac{B}{2A} \frac{\rho^2}{\rho_0}
 <ul>
 <li>\(\beta = 1 + \frac{B}{2A}\)</li>
 </ul>
-
 </div>
 
-<div class="section">
+<div class="section-block">
 <h2>7. Including Absorption</h2>
 
 <div class="equation">
@@ -180,11 +193,10 @@ p = c^2 \rho + \frac{B}{2A} \frac{\rho^2}{\rho_0}
 = - \frac{\beta}{\rho_0 c^4} \frac{\partial^2 (p^2)}{\partial t^2}
 \]
 </div>
-
 </div>
 
-<div class="section">
-<h2>8. KZK Equation (Focused Ultrasound)</h2>
+<div class="section-block">
+<h2>8. KZK Equation</h2>
 
 <div class="equation">
 \[
@@ -194,10 +206,9 @@ p = c^2 \rho + \frac{B}{2A} \frac{\rho^2}{\rho_0}
 + \frac{\beta}{2\rho_0 c^3} \frac{\partial (p^2)}{\partial t}
 \]
 </div>
-
 </div>
 
-<div class="section">
+<div class="section-block">
 <h2>9. Burgers Equation</h2>
 
 <div class="equation">
@@ -207,20 +218,24 @@ p = c^2 \rho + \frac{B}{2A} \frac{\rho^2}{\rho_0}
 + \delta \frac{\partial^2 p}{\partial t^2}
 \]
 </div>
-
 </div>
 
-<div class="section">
+<div class="section-block">
 <h2>10. Physical Interpretation</h2>
 
 <ul>
-<li><b>Linear Term:</b> Wave propagation</li>
-<li><b>Nonlinear Term:</b> Harmonic generation</li>
-<li><b>Absorption:</b> Energy dissipation</li>
+<li><b>Linear:</b> Wave propagation</li>
+<li><b>Nonlinear:</b> Harmonic generation</li>
+<li><b>Absorption:</b> Energy loss</li>
 <li><b>Diffraction:</b> Beam spreading</li>
 </ul>
-
 </div>
+
+</section>
+
+<footer>
+  <p>© 2026 Ayushman Jena</p>
+</footer>
 
 </body>
 </html>
