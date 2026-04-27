@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Derivation of Acoustic Wave Equation (Linear to Nonlinear)</title>
+
+    <!-- MathJax for LaTeX -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            margin: 40px;
+            line-height: 1.7;
+            background-color: #f9fafc;
+            color: #222;
+        }
+        h1, h2, h3 {
+            color: #0a3d62;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .equation {
+            background: #ffffff;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .highlight {
+            background: #eef6ff;
+            padding: 15px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Derivation of Acoustic Wave Equation in 3D</h1>
+<p><b>From Continuity Equation to Nonlinear Westervelt Equation</b></p>
+
+<div class="section">
+<h2>1. Governing Equations</h2>
+
+<h3>Continuity Equation</h3>
+<div class="equation">
+\[
+\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0
+\]
+</div>
+
+<h3>Momentum Equation (Euler)</h3>
+<div class="equation">
+\[
+\rho \left( \frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla)\mathbf{v} \right) = -\nabla p
+\]
+</div>
+
+<h3>Equation of State</h3>
+<div class="equation">
+\[
+p = p(\rho)
+\]
+</div>
+
+</div>
+
+<div class="section">
+<h2>2. Small Perturbation Approximation</h2>
+
+<div class="equation">
+\[
+\begin{aligned}
+p &= p_0 + p' \\
+\rho &= \rho_0 + \rho' \\
+\mathbf{v} &= \mathbf{v}'
+\end{aligned}
+\]
+</div>
+
+</div>
+
+<div class="section">
+<h2>3. Linearization</h2>
+
+<h3>Continuity Equation</h3>
+<div class="equation">
+\[
+\frac{\partial \rho'}{\partial t} + \rho_0 \nabla \cdot \mathbf{v} = 0
+\]
+</div>
+
+<h3>Momentum Equation</h3>
+<div class="equation">
+\[
+\rho_0 \frac{\partial \mathbf{v}}{\partial t} = -\nabla p'
+\]
+</div>
+
+<h3>Equation of State</h3>
+<div class="equation">
+\[
+p' = c^2 \rho'
+\]
+</div>
+
+</div>
+
+<div class="section">
+<h2>4. Derivation of Linear Wave Equation</h2>
+
+<h3>Step 1</h3>
+<div class="equation">
+\[
+\rho_0 \frac{\partial}{\partial t} (\nabla \cdot \mathbf{v}) = -\nabla^2 p'
+\]
+</div>
+
+<h3>Step 2</h3>
+<div class="equation">
+\[
+\frac{\partial^2 \rho'}{\partial t^2} + \rho_0 \frac{\partial}{\partial t} (\nabla \cdot \mathbf{v}) = 0
+\]
+</div>
+
+<h3>Step 3</h3>
+<div class="equation">
+\[
+\frac{\partial^2 \rho'}{\partial t^2} - \nabla^2 p' = 0
+\]
+</div>
+
+<h3>Final Linear Wave Equation</h3>
+<div class="equation highlight">
+\[
+\nabla^2 p - \frac{1}{c^2} \frac{\partial^2 p}{\partial t^2} = 0
+\]
+</div>
+
+</div>
+
+<div class="section">
+<h2>5. Nonlinear Acoustics</h2>
+
+<h3>Nonlinear Equation of State</h3>
+<div class="equation">
+\[
+p = c^2 \rho + \frac{B}{2A} \frac{\rho^2}{\rho_0}
+\]
+</div>
+
+</div>
+
+<div class="section">
+<h2>6. Westervelt Equation</h2>
+
+<div class="equation highlight">
+\[
+\nabla^2 p - \frac{1}{c^2} \frac{\partial^2 p}{\partial t^2}
+= - \frac{\beta}{\rho_0 c^4} \frac{\partial^2 (p^2)}{\partial t^2}
+\]
+</div>
+
+<p>Where:</p>
+<ul>
+<li>\(\beta = 1 + \frac{B}{2A}\)</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>7. Including Absorption</h2>
+
+<div class="equation">
+\[
+\nabla^2 p - \frac{1}{c^2} \frac{\partial^2 p}{\partial t^2}
++ \delta \frac{\partial}{\partial t} (\nabla^2 p)
+= - \frac{\beta}{\rho_0 c^4} \frac{\partial^2 (p^2)}{\partial t^2}
+\]
+</div>
+
+</div>
+
+<div class="section">
+<h2>8. KZK Equation (Focused Ultrasound)</h2>
+
+<div class="equation">
+\[
+\frac{\partial p}{\partial z}
+= \frac{1}{2c} \nabla_\perp^2 p
++ \frac{\delta}{2c^3} \frac{\partial^2 p}{\partial t^2}
++ \frac{\beta}{2\rho_0 c^3} \frac{\partial (p^2)}{\partial t}
+\]
+</div>
+
+</div>
+
+<div class="section">
+<h2>9. Burgers Equation</h2>
+
+<div class="equation">
+\[
+\frac{\partial p}{\partial x}
+= \frac{\beta}{\rho_0 c^3} p \frac{\partial p}{\partial t}
++ \delta \frac{\partial^2 p}{\partial t^2}
+\]
+</div>
+
+</div>
+
+<div class="section">
+<h2>10. Physical Interpretation</h2>
+
+<ul>
+<li><b>Linear Term:</b> Wave propagation</li>
+<li><b>Nonlinear Term:</b> Harmonic generation</li>
+<li><b>Absorption:</b> Energy dissipation</li>
+<li><b>Diffraction:</b> Beam spreading</li>
+</ul>
+
+</div>
+
+</body>
+</html>
