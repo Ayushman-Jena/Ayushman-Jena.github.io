@@ -550,3 +550,14 @@ footer {
     font-size: 0.75rem;
     color: #8b949e;
 }
+
+/* SEARCH */
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: white;
+}
