@@ -520,3 +520,33 @@ footer {
     font-family: monospace;
     margin: 10px 0;
 }
+
+/* BLOG CATEGORY CARD */
+.blog-card {
+    background: linear-gradient(145deg, #161b22, #1c2128);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #21262d;
+    width: 300px;
+}
+
+/* TITLE */
+.blog-card h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+/* PREVIEW */
+.blog-preview {
+    margin-bottom: 10px;
+}
+
+.blog-preview p {
+    font-size: 0.9rem;
+    color: #c9d1d9;
+}
+
+.blog-preview span {
+    font-size: 0.75rem;
+    color: #8b949e;
+}
