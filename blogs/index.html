@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Blog | Ayushman Jena</title>
+  <title>Blogs | Ayushman Jena</title>
   <link rel="stylesheet" href="../style.css">
 </head>
+
 <body>
 
 <header>
   <nav class="container">
-    <h2 class="logo">Ayushman Jena</h2>
+    <h2 class="logo">AJ</h2>
     <ul>
       <li><a href="../index.html">Home</a></li>
     </ul>
@@ -18,60 +19,53 @@
 
 <section class="section container">
 
-  <h1>Blog & Notes</h1>
+  <h1>Blogs & Notes</h1>
 
-  <!-- BLOG ITEM -->
-  <div class="blog-item">
-    <div class="blog-content">
-      <h3>Fundamentals of Acoustic Wave Equations</h3>
-      <p>
-        A foundational overview of acoustic wave propagation, governing equations,
-        and their applications in ultrasound and HIFU systems.
-      </p>
+  <!-- SEARCH -->
+  <input type="text" id="searchBar" placeholder="Search articles..." class="search-bar">
 
-      <a href="acoustic-wave-equations.html" class="blog-btn">Read More</a>
+  <!-- BLOG LIST -->
+  <div id="blogList">
+
+    <!-- CATEGORY -->
+    <h2>Acoustics</h2>
+
+    <div class="blog-item">
+      <div class="blog-content">
+        <h3>COMSOL Simulation of Focused Ultrasound</h3>
+        <a href="focused-ultrasound.html">Read</a>
+      </div>
+      <div class="blog-date">July 2025</div>
     </div>
 
-    <div class="blog-date">
-      Aug 2026
-    </div>
-  </div>
-
-  <!-- BLOG ITEM -->
-  <div class="blog-item">
-    <div class="blog-content">
-      <h3>Understanding Hydrophone Data</h3>
-      <p>
-        Techniques for processing hydrophone signals, extracting pressure values,
-        and computing acoustic intensity from measurements.
-      </p>
-
-      <a href="hydrophone-data.html" class="blog-btn">Read More</a>
+    <div class="blog-item">
+      <div class="blog-content">
+        <h3>Acoustic Wave Equation Derivation</h3>
+        <a href="wave-equation.html">Read</a>
+      </div>
+      <div class="blog-date">June 2025</div>
     </div>
 
-    <div class="blog-date">
-      July 2026
-    </div>
-  </div>
+    <!-- ADD MORE -->
 
-  <!-- BLOG ITEM -->
-  <div class="blog-item">
-    <div class="blog-content">
-      <h3>Control Systems Fundamentals</h3>
-      <p>
-        Key concepts in control theory including system modeling,
-        stability, and controller design.
-      </p>
-
-      <a href="control-systems.html" class="blog-btn">Read More</a>
-    </div>
-
-    <div class="blog-date">
-      June 2026
-    </div>
   </div>
 
 </section>
+
+<script>
+const searchBar = document.getElementById("searchBar");
+
+searchBar.addEventListener("keyup", function() {
+  const value = this.value.toLowerCase();
+  const items = document.querySelectorAll(".blog-item");
+
+  items.forEach(item => {
+    item.style.display = item.innerText.toLowerCase().includes(value)
+      ? "flex"
+      : "none";
+  });
+});
+</script>
 
 </body>
 </html>
