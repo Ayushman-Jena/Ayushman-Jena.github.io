@@ -585,30 +585,3 @@ footer {
 .explore-link:hover {
     text-decoration: underline;
 }
-
-.hero-bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
-/* COMMON STYLE FOR IMAGE + VIDEO */
-.hero-bg .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-/* ACTIVE SLIDE */
-.hero-bg .active {
-    opacity: 1;
-}
-
