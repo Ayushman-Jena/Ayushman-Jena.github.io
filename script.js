@@ -1,9 +1,8 @@
-// ==============================
-// FADE-IN ANIMATION (SCROLL)
-// ==============================
-
 document.addEventListener("DOMContentLoaded", () => {
 
+    // ==============================
+    // FADE-IN ANIMATION
+    // ==============================
     const elements = document.querySelectorAll('.fade-in');
 
     const observer = new IntersectionObserver((entries) => {
@@ -12,39 +11,54 @@ document.addEventListener("DOMContentLoaded", () => {
                 entry.target.classList.add('show');
             }
         });
-    }, {
-        threshold: 0.1
-    });
+    }, { threshold: 0.1 });
 
     elements.forEach(el => observer.observe(el));
 
 
     // ==============================
-    // HERO BACKGROUND SLIDESHOW
+    // HERO SLIDESHOW (FIXED)
     // ==============================
 
-    const slides = document.querySelectorAll('.hero-bg img');
+    const slides = document.querySelectorAll('.hero-bg .slide');
     let current = 0;
 
-    if (slides.length > 0) {
+    if (slides.length === 0) {
+        console.log("No slides found");
+        return;
+    }
 
-        // Show first image
+    // Ensure first slide is active
+    slides[0].classList.add('active');
+
+    setInterval(() => {
+
+        // Remove current
+        slides[current].classList.remove('active');
+
+        // Pause video if needed
+        if (slides[current].tagName === "VIDEO") {
+            slides[current].pause();
+        }
+
+        // Move to next
+        current = (current + 1) % slides.length;
+
+        // Activate next
         slides[current].classList.add('active');
 
-        setInterval(() => {
-            slides[current].classList.remove('active');
+        // Play video if needed
+        if (slides[current].tagName === "VIDEO") {
+            slides[current].play();
+        }
 
-            current = (current + 1) % slides.length;
-
-            slides[current].classList.add('active');
-        }, 4000); // change every 4 sec
-    }
+    }, 5000);
 
 });
 
 
 // ==============================
-// HERO FADE-IN EFFECT
+// HERO LOAD FIX
 // ==============================
 
 window.addEventListener("load", () => {
