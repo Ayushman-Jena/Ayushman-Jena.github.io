@@ -53,27 +53,57 @@ nav a:hover {
     color: #58a6ff;
 }
 
-/* HERO */
+/* HERO BASE */
 .hero {
+    position: relative;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
+}
+
+/* BACKGROUND CONTAINER */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* IMAGE + VIDEO COMMON STYLE */
+.hero-bg .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* ACTIVE SLIDE */
+.hero-bg .slide.active {
+    opacity: 1;
+}
+
+/* OVERLAY */
+.hero-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(13,17,23,0.75);
+    z-index: 1;
+}
+
+/* CONTENT */
+.hero-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    background: radial-gradient(circle at center, #161b22, #0d1117);
-}
-
-.hero h1 {
-    font-size: 4rem;
-    color: #ffffff;
-    max-width: 800px;
-}
-
-.hero p {
-    margin-top: 15px;
-    font-size: 1.2rem;
-    color: #8b949e;
 }
 
 /* SECTIONS */
