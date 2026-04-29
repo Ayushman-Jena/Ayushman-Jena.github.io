@@ -518,3 +518,70 @@ footer {
 .explore-link:hover {
     text-decoration: underline;
 }
+
+/* BLOG INDEX PAGE */
+
+.blog-header {
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    margin-top: 10px;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    background: #161b22;
+    color: #c9d1d9;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #58a6ff;
+}
+
+/* BLOG ITEM CARD */
+.blog-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: linear-gradient(145deg, #161b22, #1c2128);
+    border: 1px solid #21262d;
+    border-radius: 12px;
+
+    padding: 20px;
+    margin-bottom: 20px;
+
+    transition: 0.3s;
+}
+
+.blog-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* LEFT SIDE */
+.blog-content h3 {
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.blog-content a {
+    color: #58a6ff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.blog-content a:hover {
+    text-decoration: underline;
+}
+
+/* DATE */
+.blog-date {
+    color: #8b949e;
+    font-size: 0.9rem;
+}
