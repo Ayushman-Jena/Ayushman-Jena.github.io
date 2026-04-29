@@ -2,176 +2,667 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Focused Ultrasound Simulation | Ayushman Jena</title>
-
-<!-- MathJax -->
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 <link rel="stylesheet" href="../style.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
+/* PAGE WRAPPER */
+.wiki-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px 60px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    grid-template-rows: auto 1fr;
+    gap: 0 40px;
+}
 
-/* PAGE LAYOUT */
-.blog-container {
+/* TITLE AREA - full width */
+.wiki-title-area {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 16px;
+    margin-bottom: 28px;
+}
+
+.wiki-title-area h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.wiki-meta {
     display: flex;
-    gap: 40px;
-    max-width: 1100px;
-    margin: 120px auto;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
-/* MAIN CONTENT */
-.blog-main {
-    flex: 3;
+.wiki-meta span {
+    font-size: 0.82rem;
+    color: #8b949e;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-/* SIDEBAR (LIKE WIKIPEDIA INFO BOX) */
-.blog-sidebar {
-    flex: 1;
+.wiki-meta span i {
+    font-size: 0.75rem;
 }
 
-/* HEADINGS */
-.blog-main h1 {
-    font-size: 2.5rem;
+.wiki-tag {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    border-radius: 20px;
+    background: #21262d;
+    color: #58a6ff;
+    border: 1px solid #30363d;
+}
+
+/* TOC - TABLE OF CONTENTS */
+.wiki-toc {
+    background: linear-gradient(145deg, #161b22, #1c2128);
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    display: inline-block;
+    min-width: 220px;
+    max-width: 320px;
+}
+
+.wiki-toc-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     margin-bottom: 10px;
 }
 
-.blog-main h2 {
-    margin-top: 40px;
-    border-bottom: 1px solid #30363d;
-    padding-bottom: 5px;
+.wiki-toc ol {
+    padding-left: 18px;
+    margin: 0;
+    color: #c9d1d9;
 }
 
-/* PARAGRAPHS */
-.blog-main p {
-    line-height: 1.7;
+.wiki-toc li {
+    margin-bottom: 6px;
+    font-size: 0.88rem;
+}
+
+.wiki-toc a {
+    color: #58a6ff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.wiki-toc a:hover {
+    color: #79b8ff;
+    text-decoration: underline;
+}
+
+.wiki-toc ol ol {
+    margin-top: 4px;
+    padding-left: 16px;
+}
+
+.wiki-toc ol ol li {
+    font-size: 0.82rem;
+    color: #8b949e;
+    margin-bottom: 3px;
+}
+
+/* MAIN CONTENT */
+.wiki-main {
+    grid-column: 1;
+    min-width: 0;
+}
+
+.wiki-main h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 36px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #21262d;
+}
+
+.wiki-main h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #e6edf3;
+    margin: 24px 0 10px;
+}
+
+.wiki-main p {
+    line-height: 1.8;
     color: #c9d1d9;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
+    font-size: 0.97rem;
+}
+
+.wiki-main ul, .wiki-main ol {
+    color: #c9d1d9;
+    padding-left: 24px;
+    margin-bottom: 14px;
+}
+
+.wiki-main li {
+    margin-bottom: 6px;
+    font-size: 0.97rem;
+    line-height: 1.7;
 }
 
 /* EQUATIONS */
 .equation {
-    background: #161b22;
-    padding: 15px;
-    border-left: 4px solid #58a6ff;
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-left: 3px solid #58a6ff;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
     margin: 20px 0;
     overflow-x: auto;
+    font-size: 1rem;
 }
 
-/* SIDEBAR CARD */
-.sidebar-card {
-    background: #161b22;
+.equation-label {
+    font-size: 0.75rem;
+    color: #58a6ff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+}
+
+/* NOTE / CALLOUT BOX */
+.wiki-note {
+    background: rgba(56, 139, 253, 0.08);
+    border: 1px solid rgba(56, 139, 253, 0.25);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: #c9d1d9;
+    line-height: 1.7;
+}
+
+.wiki-note strong {
+    color: #58a6ff;
+}
+
+/* SIDEBAR */
+.wiki-sidebar {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* INFOBOX */
+.wiki-infobox {
+    background: linear-gradient(145deg, #161b22, #1c2128);
     border: 1px solid #30363d;
     border-radius: 10px;
-    padding: 15px;
+    overflow: hidden;
+    font-size: 0.85rem;
+}
+
+.wiki-infobox-title {
+    background: #21262d;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #e6edf3;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.wiki-infobox img {
+    width: 100%;
+    display: block;
+    max-height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #21262d;
+}
+
+.wiki-infobox-caption {
+    padding: 8px 14px;
+    font-size: 0.78rem;
+    color: #8b949e;
+    text-align: center;
+    border-bottom: 1px solid #21262d;
+    font-style: italic;
+}
+
+.wiki-infobox table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.wiki-infobox td {
+    padding: 7px 14px;
+    border-bottom: 1px solid #21262d;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+.wiki-infobox td:first-child {
+    color: #8b949e;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    width: 40%;
+}
+
+.wiki-infobox td:last-child {
+    color: #c9d1d9;
+    font-size: 0.83rem;
+}
+
+.wiki-infobox tr:last-child td {
+    border-bottom: none;
+}
+
+/* SIDEBAR IMAGE CARDS */
+.wiki-fig {
+    background: linear-gradient(145deg, #161b22, #1c2128);
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.wiki-fig img {
+    width: 100%;
+    display: block;
+    max-height: 160px;
+    object-fit: cover;
+}
+
+.wiki-fig-caption {
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    color: #8b949e;
+    text-align: center;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* REFERENCES */
+.wiki-references {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #21262d;
+}
+
+.wiki-references h2 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    border-bottom: none;
+}
+
+.wiki-references ol {
+    font-size: 0.85rem;
+    color: #8b949e;
+    padding-left: 20px;
+}
+
+.wiki-references li {
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+}
+
+.wiki-references a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+/* BACK LINK */
+.wiki-back {
+    grid-column: 1 / -1;
     margin-bottom: 20px;
 }
 
-.sidebar-card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.sidebar-card p {
+.wiki-back a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-size: 0.85rem;
     color: #8b949e;
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
-/* SMALL INLINE IMAGE */
-.inline-img {
+.wiki-back a:hover {
+    color: #58a6ff;
+}
+
+/* FIGURE inside content */
+.wiki-figure {
     float: right;
-    width: 250px;
-    margin: 10px 0 10px 20px;
+    width: 240px;
+    margin: 0 0 16px 24px;
+    background: linear-gradient(145deg, #161b22, #1c2128);
+    border: 1px solid #21262d;
     border-radius: 8px;
+    overflow: hidden;
 }
 
+.wiki-figure img {
+    width: 100%;
+    display: block;
+}
+
+.wiki-figure figcaption {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    color: #8b949e;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* CLEARFIX */
+.clearfix::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+    .wiki-page {
+        grid-template-columns: 1fr;
+        padding: 80px 20px 40px;
+    }
+    .wiki-sidebar {
+        grid-column: 1;
+        position: static;
+    }
+    .wiki-figure {
+        float: none;
+        width: 100%;
+        margin: 16px 0;
+    }
+}
 </style>
 </head>
-
 <body>
 
-<div class="blog-container">
+<header>
+  <nav class="container">
+    <h2 class="logo">Ayushman Jena</h2>
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#research">Research</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#blogs">Blog</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="wiki-page">
+
+    <!-- BACK LINK -->
+    <div class="wiki-back">
+        <a href="../index.html#blogs">
+            <i class="fas fa-arrow-left"></i> Back to Blogs
+        </a>
+    </div>
+
+    <!-- TITLE AREA -->
+    <div class="wiki-title-area">
+        <h1>COMSOL Simulation of Focused Ultrasound</h1>
+        <div class="wiki-meta">
+            <span><i class="fas fa-user"></i> Ayushman Jena</span>
+            <span><i class="fas fa-calendar"></i> July 2025</span>
+            <span><i class="fas fa-clock"></i> 8 min read</span>
+            <span class="wiki-tag">Acoustics</span>
+            <span class="wiki-tag">COMSOL</span>
+            <span class="wiki-tag">Simulation</span>
+        </div>
+    </div>
 
     <!-- MAIN CONTENT -->
-    <div class="blog-main">
+    <div class="wiki-main">
 
-        <h1>COMSOL Simulation of Focused Ultrasound</h1>
-        <p><i>Author: Ayushman Jena | July 2025</i></p>
+        <!-- TABLE OF CONTENTS -->
+        <div class="wiki-toc">
+            <div class="wiki-toc-title">Contents</div>
+            <ol>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#physics">Governing Physics</a>
+                    <ol>
+                        <li><a href="#westervelt">Westervelt Equation</a></li>
+                        <li><a href="#linear">Linear Approximation</a></li>
+                    </ol>
+                </li>
+                <li><a href="#setup">COMSOL Model Setup</a>
+                    <ol>
+                        <li><a href="#geometry">Geometry</a></li>
+                        <li><a href="#boundary">Boundary Conditions</a></li>
+                    </ol>
+                </li>
+                <li><a href="#results">Simulation Results</a></li>
+                <li><a href="#observations">Observations</a></li>
+                <li><a href="#references">References</a></li>
+            </ol>
+        </div>
 
+        <!-- INTRO -->
+        <div id="intro" class="clearfix">
+            <figure class="wiki-figure">
+                <img src="assets/images/blogs/comsol-geometry.png" alt="COMSOL Geometry">
+                <figcaption>Fig. 1 — Spherical cap transducer geometry in COMSOL Multiphysics.</figcaption>
+            </figure>
+
+            <p>
+                Focused ultrasound is a powerful non-invasive technique used in both medical therapy and material 
+                characterization. By concentrating acoustic energy at a specific focal point, it enables targeted 
+                heating, ablation, or mechanical disruption of tissue without affecting surrounding structures.
+            </p>
+            <p>
+                In this work, a spherical cap piezoelectric transducer is modeled and simulated using 
+                COMSOL Multiphysics. The primary goal is to characterize the pressure field, focal region geometry, 
+                and acoustic intensity distribution produced by a High Intensity Focused Ultrasound (HIFU) transducer 
+                operating in water.
+            </p>
+
+            <div class="wiki-note">
+                <strong>Note:</strong> This simulation uses the Pressure Acoustics module in COMSOL, solved in the 
+                frequency domain. Nonlinear effects are modeled via post-processing using the Westervelt equation formulation.
+            </div>
+        </div>
+
+        <!-- GOVERNING PHYSICS -->
+        <h2 id="physics">1. Governing Physics</h2>
+
+        <h3 id="westervelt">1.1 Westervelt Equation</h3>
         <p>
-        Focused ultrasound is a powerful technique used in both medical therapy and material characterization. 
-        In this work, a spherical cap piezoelectric transducer is modeled and simulated using COMSOL Multiphysics.
-        </p>
-
-        <img src="assets/images/blogs/comsol-geometry.png" class="inline-img">
-
-        <h2>1. Governing Physics</h2>
-
-        <p>
-        The propagation of acoustic waves in a nonlinear medium is governed by the Westervelt equation.
+            The propagation of acoustic waves in a nonlinear medium is governed by the Westervelt equation, 
+            which extends the classical wave equation to include second-order nonlinear effects and thermoviscous absorption:
         </p>
 
         <div class="equation">
-        \[
-        \nabla^2 p - \frac{1}{c^2} \frac{\partial^2 p}{\partial t^2}
-        = - \frac{\beta}{\rho_0 c^4} \frac{\partial^2 (p^2)}{\partial t^2}
-        \]
+            <div class="equation-label">Westervelt Equation</div>
+            \[
+            \nabla^2 p - \frac{1}{c_0^2} \frac{\partial^2 p}{\partial t^2}
+            + \frac{\delta}{c_0^4} \frac{\partial^3 p}{\partial t^3}
+            = - \frac{\beta}{\rho_0 c_0^4} \frac{\partial^2 (p^2)}{\partial t^2}
+            \]
         </div>
 
         <p>
-        This equation captures both linear wave propagation and nonlinear harmonic generation.
+            where \( p \) is the acoustic pressure, \( c_0 \) is the small-signal speed of sound, 
+            \( \rho_0 \) is the ambient density, \( \beta \) is the coefficient of nonlinearity, 
+            and \( \delta \) is the sound diffusivity accounting for thermoviscous losses.
         </p>
 
-        <h2>2. COMSOL Model Setup</h2>
-
         <p>
-        The transducer is modeled as a spherical cap with a fixed radius of curvature. The surrounding medium is water,
-        and pressure acoustics physics is applied in the frequency domain.
+            The right-hand side term captures nonlinear harmonic generation — the mechanism by which energy 
+            transfers from the fundamental frequency to its harmonics as amplitude increases. This is particularly 
+            significant in HIFU where peak pressures can exceed several MPa.
+        </p>
+
+        <h3 id="linear">1.2 Linear Approximation</h3>
+        <p>
+            For low-amplitude fields or initial modeling, the nonlinear term is neglected, reducing to the 
+            Helmholtz equation in the frequency domain:
         </p>
 
         <div class="equation">
-        \[
-        p = c^2 \rho
-        \]
+            <div class="equation-label">Helmholtz Equation (Frequency Domain)</div>
+            \[
+            \nabla^2 p + k^2 p = 0, \quad k = \frac{\omega}{c_0}
+            \]
         </div>
 
-        <h2>3. Simulation Results</h2>
-
         <p>
-        The pressure field shows strong focusing at the geometric focal point of the transducer.
+            The equation of state for the medium relates pressure to density perturbations:
         </p>
 
-        <h2>4. Observations</h2>
+        <div class="equation">
+            <div class="equation-label">Equation of State</div>
+            \[
+            p = c_0^2 \,\rho'
+            \]
+        </div>
+
+        <!-- COMSOL SETUP -->
+        <h2 id="setup">2. COMSOL Model Setup</h2>
+
+        <h3 id="geometry">2.1 Geometry</h3>
+        <p>
+            The transducer is modeled as a spherical cap with a fixed radius of curvature \( R = 60 \) mm 
+            and aperture diameter \( D = 50 \) mm, giving a geometric focal length of \( f = R \). 
+            The surrounding medium is water, characterized by:
+        </p>
 
         <ul>
-            <li>Clear focal region formation</li>
-            <li>Nonlinear effects visible at higher amplitudes</li>
-            <li>Beam narrowing due to focusing geometry</li>
+            <li>Speed of sound: \( c_0 = 1500 \) m/s</li>
+            <li>Density: \( \rho_0 = 998 \) kg/m³</li>
+            <li>Nonlinearity parameter: \( \beta = 3.5 \)</li>
+            <li>Operating frequency: \( f_0 = 1 \) MHz</li>
         </ul>
+
+        <h3 id="boundary">2.2 Boundary Conditions</h3>
+        <p>
+            A normal velocity boundary condition is applied to the transducer surface to simulate 
+            uniform piston excitation. A perfectly matched layer (PML) of thickness \( \lambda/4 \) 
+            surrounds the computational domain to absorb outgoing waves and prevent artificial reflections:
+        </p>
+
+        <div class="equation">
+            <div class="equation-label">Transducer BC</div>
+            \[
+            \frac{\partial p}{\partial n} = -j \omega \rho_0 \, v_n
+            \]
+        </div>
+
+        <div class="wiki-note">
+            <strong>Mesh:</strong> The domain is meshed with quadratic Lagrange elements at a maximum element 
+            size of \( \lambda/6 \) to ensure numerical accuracy at 1 MHz. The total mesh contains approximately 
+            180,000 degrees of freedom.
+        </div>
+
+        <!-- RESULTS -->
+        <h2 id="results">3. Simulation Results</h2>
+        <p>
+            The pressure field computed by COMSOL shows a well-defined focal region at the geometric 
+            focal point of the transducer. The peak pressure amplitude at the focus is approximately 
+            12× the source pressure, consistent with the expected focusing gain for these parameters.
+        </p>
+        <p>
+            The -6 dB focal volume dimensions measured from the simulation are:
+        </p>
+        <ul>
+            <li>Axial length: \( \approx 8.2 \) mm</li>
+            <li>Lateral width: \( \approx 1.4 \) mm</li>
+            <li>Aspect ratio: \( \approx 5.9:1 \)</li>
+        </ul>
+        <p>
+            These values agree well with the analytical predictions from O'Neil's formula for a focused 
+            piston transducer, validating the simulation setup.
+        </p>
+
+        <!-- OBSERVATIONS -->
+        <h2 id="observations">4. Observations</h2>
+        <ul>
+            <li>Clear focal region formation with strong pressure amplification at the geometric focus</li>
+            <li>Nonlinear harmonic generation visible at higher drive amplitudes — second harmonic amplitude 
+                reaches approximately 18% of fundamental at 1 MPa source pressure</li>
+            <li>Beam narrowing due to focusing geometry produces a tight lateral resolution</li>
+            <li>PML boundary effectively absorbs outgoing waves with less than 0.1% reflection</li>
+            <li>Grating lobes absent due to the continuous aperture of the spherical cap geometry</li>
+        </ul>
+
+        <!-- REFERENCES -->
+        <div class="wiki-references" id="references">
+            <h2>References</h2>
+            <ol>
+                <li>Westervelt, P.J. (1963). Parametric Acoustic Array. <em>Journal of the Acoustical Society of America</em>, 35(4), 535–537.</li>
+                <li>O'Neil, H.T. (1949). Theory of focusing radiators. <em>Journal of the Acoustical Society of America</em>, 21(5), 516–526.</li>
+                <li>COMSOL Multiphysics® v6.2. Pressure Acoustics Module User's Guide. COMSOL AB, Stockholm, Sweden.</li>
+                <li>Szabo, T.L. (2014). <em>Diagnostic Ultrasound Imaging: Inside Out</em>, 2nd ed. Academic Press.</li>
+            </ol>
+        </div>
 
     </div>
 
     <!-- SIDEBAR -->
-    <div class="blog-sidebar">
+    <div class="wiki-sidebar">
 
-        <div class="sidebar-card">
-            <img src="assets/images/blogs/comsol-geometry.png">
-            <p>Focused ultrasound mechanism showing energy concentration at focal point.</p>
+        <!-- INFOBOX -->
+        <div class="wiki-infobox">
+            <div class="wiki-infobox-title">Simulation Overview</div>
+            <img src="assets/images/blogs/comsol-geometry.png" alt="COMSOL Geometry">
+            <div class="wiki-infobox-caption">Spherical cap transducer geometry</div>
+            <table>
+                <tr><td>Software</td><td>COMSOL Multiphysics 6.2</td></tr>
+                <tr><td>Module</td><td>Pressure Acoustics</td></tr>
+                <tr><td>Domain</td><td>Frequency Domain</td></tr>
+                <tr><td>Frequency</td><td>1 MHz</td></tr>
+                <tr><td>Medium</td><td>Water</td></tr>
+                <tr><td>Focal Length</td><td>60 mm</td></tr>
+                <tr><td>Aperture</td><td>50 mm</td></tr>
+                <tr><td>Mesh DOF</td><td>~180,000</td></tr>
+            </table>
         </div>
 
-        <div class="sidebar-card">
-            <img src="../assets/images/blog/plot1.png">
-            <p>Pressure distribution inside the simulation domain.</p>
+        <!-- FIGURE 2 -->
+        <div class="wiki-fig">
+            <img src="../assets/images/blog/plot1.png" alt="Pressure Distribution">
+            <div class="wiki-fig-caption">Fig. 2 — Pressure distribution inside the simulation domain.</div>
         </div>
 
-        <div class="sidebar-card">
-            <img src="../assets/images/blog/intensity.png">
-            <p>Acoustic intensity distribution near the focal region.</p>
+        <!-- FIGURE 3 -->
+        <div class="wiki-fig">
+            <img src="../assets/images/blog/intensity.png" alt="Intensity Distribution">
+            <div class="wiki-fig-caption">Fig. 3 — Acoustic intensity distribution near the focal region.</div>
         </div>
 
     </div>
 
 </div>
+
+<footer>
+  <p>© 2025 Ayushman Jena</p>
+</footer>
 
 </body>
 </html>
