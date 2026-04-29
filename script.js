@@ -53,34 +53,3 @@ window.addEventListener("load", () => {
         hero.style.opacity = "1";
     }
 });
-
-const slides = document.querySelectorAll('.hero-bg .slide');
-let current = 0;
-
-setInterval(() => {
-    slides[current].classList.remove('active');
-
-    current = (current + 1) % slides.length;
-
-    slides[current].classList.add('active');
-
-}, 5000); // 5 sec
-
-setInterval(() => {
-    slides[current].classList.remove('active');
-
-    // Pause video if leaving
-    if (slides[current].tagName === "VIDEO") {
-        slides[current].pause();
-    }
-
-    current = (current + 1) % slides.length;
-
-    slides[current].classList.add('active');
-
-    // Play video if entering
-    if (slides[current].tagName === "VIDEO") {
-        slides[current].play();
-    }
-
-}, 5000);
