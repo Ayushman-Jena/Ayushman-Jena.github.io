@@ -718,6 +718,28 @@ footer {
     text-decoration: none;
 }
 
+.wiki-back {
+    display: flex;
+    justify-content: flex-end;   /* push to right */
+    gap: 15px;                   /* space between buttons */
+    margin-bottom: 20px;
+}
+
+.wiki-back a {
+    padding: 6px 12px;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #8b949e;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: 0.2s;
+}
+
+.wiki-back a:hover {
+    color: #58a6ff;
+    border-color: #58a6ff;
+}
+
 /* RESPONSIVE */
 @media (max-width: 800px) {
     .wiki-content-row {
