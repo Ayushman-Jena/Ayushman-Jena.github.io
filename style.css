@@ -585,3 +585,149 @@ footer {
     color: #8b949e;
     font-size: 0.9rem;
 }
+
+/* ============================= */
+/* WIKI BLOG TEMPLATE (GLOBAL)   */
+/* ============================= */
+
+.wiki-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px 60px;
+}
+
+.wiki-title-area {
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 16px;
+    margin-bottom: 28px;
+}
+
+.wiki-content-row {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+}
+
+/* META */
+.wiki-meta {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.wiki-meta span {
+    font-size: 0.8rem;
+    color: #8b949e;
+}
+
+.wiki-tag {
+    padding: 2px 10px;
+    border-radius: 20px;
+    background: #21262d;
+    color: #58a6ff;
+    font-size: 0.75rem;
+}
+
+/* MAIN CONTENT */
+.wiki-main h2 {
+    margin-top: 35px;
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 5px;
+}
+
+.wiki-main p {
+    line-height: 1.8;
+    color: #c9d1d9;
+}
+
+/* EQUATIONS */
+.equation {
+    background: #0d1117;
+    border-left: 3px solid #58a6ff;
+    padding: 15px;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+/* NOTE BOX */
+.wiki-note {
+    background: rgba(56,139,253,0.08);
+    border: 1px solid rgba(56,139,253,0.25);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+/* SIDEBAR */
+.wiki-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+/* INFOBOX */
+.wiki-infobox {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.wiki-infobox img {
+    width: 100%;
+}
+
+.wiki-infobox table {
+    width: 100%;
+}
+
+.wiki-infobox td {
+    padding: 8px;
+    border-bottom: 1px solid #21262d;
+}
+
+/* FIGURES */
+.wiki-fig {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.wiki-fig img {
+    width: 100%;
+}
+
+.wiki-fig-caption {
+    font-size: 0.8rem;
+    padding: 8px;
+    text-align: center;
+    color: #8b949e;
+}
+
+/* FLOAT IMAGE */
+.wiki-figure {
+    float: right;
+    width: 240px;
+    margin: 0 0 15px 20px;
+}
+
+/* BACK LINK */
+.wiki-back a {
+    color: #8b949e;
+    text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+    .wiki-content-row {
+        grid-template-columns: 1fr;
+    }
+    .wiki-sidebar {
+        position: static;
+    }
+    .wiki-figure {
+        float: none;
+        width: 100%;
+    }
+}
