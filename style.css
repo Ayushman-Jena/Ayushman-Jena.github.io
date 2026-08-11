@@ -793,3 +793,47 @@ footer {
 .wiki-hero .wiki-meta {
     margin-top: 10px;
 }
+
+
+/* ==============================
+   BLOG PROJECT VIDEO
+   ============================== */
+
+.wiki-video {
+    width: 75%;
+    margin: 35px auto;
+    text-align: center;
+}
+
+.wiki-video video {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #000;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.wiki-video-caption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #9ca3af;
+    text-align: center;
+}
+
+/* ==============================
+   SIDEBAR VIDEO
+   ============================== */
+
+.wiki-side-video {
+    margin-top: 18px;
+    overflow: hidden;
+}
+
+.wiki-side-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #000;
+    object-fit: cover;
+}
