@@ -833,6 +833,7 @@ footer {
 .wiki-side-video video {
     width: 100%;
     height: auto;
+    aspect-ratio: 3 / 4;
     display: block;
     background: #000;
     object-fit: contain;
