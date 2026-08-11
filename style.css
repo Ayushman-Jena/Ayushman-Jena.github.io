@@ -260,40 +260,22 @@ footer {
 }
 
 
-/* =========================================
-   PROJECT SUBSECTIONS
-   ========================================= */
-
-.project-subsection {
-    margin-top: 35px;
-}
-
-
-/* Subsection heading */
+/* Project subsections */
 
 .project-subsection-title {
-    font-size: 1.35rem;
-    font-weight: 600;
-    margin-bottom: 22px;
-    color: #dbe4ee;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  color: #dbe4ee;
 }
 
-
-/* Horizontal divider */
+/* Divider between Sponsored and Personal */
 
 .project-divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.10);
-    margin: 55px 0 50px 0;
-}
-
-
-/* View all button */
-
-.project-view-all {
-    display: inline-block;
-    margin-top: 35px;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.10);
+  margin: 50px 0 45px;
 }
 
 /* BLOG LIST STYLE */
