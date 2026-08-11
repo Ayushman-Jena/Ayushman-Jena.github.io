@@ -835,5 +835,5 @@ footer {
     height: auto;
     display: block;
     background: #000;
-    object-fit: cover;
+    object-fit: contain;
 }
