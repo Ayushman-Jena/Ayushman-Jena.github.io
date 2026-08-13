@@ -61,18 +61,17 @@
              The Transcranial focused ultrasound stimulation device is a new advancement in the field of neuromodulation
            </p>
             <p style="text-align: justify;">
-                During my tenure as Student Coordinator at the Veer Surendra Sai Space Innovation Center (VSSSIC) from January 2023 to January 2024, I had the opportunity to work extensively on 
-              VSLV (VSSUT Satellite Launch Vehicle)—a flagship student rocketry initiative recognized by ISRO under the MoU with VSSUT Burla. My contributions to the project were centered around the development of critical onboard intelligence and system-level integration. 
-              I was actively involved in the flight computer development, where the focus was on building a reliable embedded system capable of handling real-time operations during flight. 
-              This included interfacing multiple sensors, ensuring robust data acquisition, and maintaining system stability under dynamic conditions. A significant part of my work revolved around sensor data fusion, combining inputs from IMUs and other
-              onboard sensors to obtain accurate estimates of the rocket’s state parameters such as orientation, velocity, and altitude. This required implementing and testing 
-              algorithms that could operate efficiently within hardware constraints while maintaining precision.  </p>
+Transcranial focused ultrasound (tFUS) is an emerging technology that enables non-invasive delivery of acoustic energy to specific regions of the brain. Unlike conventional neuromodulation techniques that rely on electrodes or magnetic fields, tFUS can potentially achieve millimetre-scale spatial targeting while delivering energy through the intact skull.
+
+The development of a practical tFUS system, however, is not simply a matter of selecting an ultrasound transducer and applying an electrical signal. The acoustic beam must be designed, simulated, experimentally characterized, and eventually optimized for propagation through the skull. My work on the development of a tFUS device therefore follows a complete engineering pipeline—from transducer design and acoustic modelling to experimental validation and automated beam characterization.  </p>
             <p style="text-align: justify;">
-              In parallel, I worked on PCB design for the avionics system, translating circuit-level requirements into manufacturable and reliable board layouts. Emphasis was placed on noise minimization, signal integrity, and compact integration of components suitable               for aerospace environments.
+The starting point of the system is a focused piezoelectric transducer. A spherical-cap geometry is particularly attractive for tFUS because the curved aperture naturally converges acoustic waves toward a focal region.
 
-              On the analytical side, I contributed to algorithm development and MATLAB-based simulations, particularly for modeling flight behavior and validating system performance prior to physical testing. This included rocket trajectory calculations, where                       theoretical models were developed and simulated to predict flight paths, optimize launch parameters, and ensure mission safety.
+The geometry of the transducer strongly influences its acoustic behaviour. Parameters such as aperture diameter, radius of curvature, focal length, operating frequency, and piezoelectric material affect the focal position, focal dimensions, acoustic pressure, beam divergence, and sidelobe structure.
 
-              Overall, my role in VSLV allowed me to work at the intersection of embedded systems, control theory, and aerospace engineering—gaining hands-on experience in designing, simulating, and integrating complex systems for a real-world launch vehicle platform.
+For the experimental system, a focused PZT transducer is used to generate the acoustic field. The transducer is driven by an electrical excitation generated using a waveform generator and amplified before being applied to the piezoelectric element. Pulsed excitation is particularly important for tFUS because it provides control over pulse duration, pulse repetition frequency, duty cycle, and acoustic exposure.
+
+The electrical-to-acoustic conversion process is therefore an important part of the overall device architecture: waveform generation → power amplification → piezoelectric excitation → acoustic propagation → focused pressure field.
             </p>
 
           <!-- PROJECT VIDEO -->
