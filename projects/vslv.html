@@ -58,10 +58,11 @@
             <!-- INTRO -->
 
            <p style="text-align: justify;">
-           VSLV or VSSUT Satellite Launch Vehicle, as we call it is a project being developed to raise awareness for space science and technology in the country.
-           The project is funded by Indian Space Research Organisation[ISRO] as a part of an MOU with Veer Surendra Sai University of Technoloy, with an objective
-           to train and lay emphasis on the skills that space industry requires. The project itself can be thought of as a generational project meaning it has been running for
-           genrations and with each generation having its own set of 
+VSLV was one of the most ambitious engineering projects I was involved in during my undergraduate years. Developed as a student rocketry initiative with an MoU with the Indian Space Research Organisation (ISRO), the project provided an opportunity to work on a real-world aerospace system where mechanical design, electronics, embedded systems, power management, communication, control, and systems engineering had to work together.
+
+What made the project particularly valuable was that it was not simply about building a rocket. It was about understanding how multiple engineering subsystems interact within a highly constrained and mission-oriented system.
+
+My involvement was primarily centred around the electrical and electronics aspects of the project, giving me practical exposure to embedded systems, instrumentation, power electronics, sensor integration, PCB-level electronics, and the challenges associated with designing electronics for a demanding aerospace environment.
            </p>
             <p style="text-align: justify;">
                 During my tenure as Student Coordinator at the Veer Surendra Sai Space Innovation Center (VSSSIC) from January 2023 to January 2024, I had the opportunity to work extensively on 
@@ -71,11 +72,24 @@
               onboard sensors to obtain accurate estimates of the rocket’s state parameters such as orientation, velocity, and altitude. This required implementing and testing 
               algorithms that could operate efficiently within hardware constraints while maintaining precision.  </p>
             <p style="text-align: justify;">
-              In parallel, I worked on PCB design for the avionics system, translating circuit-level requirements into manufacturable and reliable board layouts. Emphasis was placed on noise minimization, signal integrity, and compact integration of components suitable               for aerospace environments.
+A student rocket development project begins with a mission objective and gradually evolves into a collection of interconnected subsystems.
 
-              On the analytical side, I contributed to algorithm development and MATLAB-based simulations, particularly for modeling flight behavior and validating system performance prior to physical testing. This included rocket trajectory calculations, where                       theoretical models were developed and simulated to predict flight paths, optimize launch parameters, and ensure mission safety.
+The overall architecture can be viewed as a combination of:
 
-              Overall, my role in VSLV allowed me to work at the intersection of embedded systems, control theory, and aerospace engineering—gaining hands-on experience in designing, simulating, and integrating complex systems for a real-world launch vehicle platform.
+Structural and mechanical systems
+Propulsion
+Avionics
+Electrical power systems
+Sensors and instrumentation
+Communication
+Embedded control and data acquisition
+Ground-support infrastructure
+
+The challenge is that none of these systems can be designed completely independently.
+
+A change in the mechanical structure can affect electronics packaging. Sensor placement can influence measurements. Power requirements affect battery selection and distribution. Communication requirements influence antenna and electronics design. Similarly, the embedded system has to acquire sensor data reliably while operating within the available computational and electrical resources.
+
+This systems-level perspective was one of the most important lessons from the VSLV project.
             </p>
 
           <!-- PROJECT VIDEO -->
@@ -100,16 +114,81 @@
             <!-- SECTION -->
             <h2>1. Vanadium</h2>
             <p>First ever student led rocket that I worked on in the year 2022 guided by my seniors and professors. Named "Vanadium" because of it's atomic number 23 representing the passing-out batch of 2023,
-            who were leading the project at the time. I was a very new face, in the team at that time and had the opportunity to work on Avionics, flight computers and telemetry.  </p>
+            who were leading the project at the time. I was a very new face, in the team at that time and had the opportunity to work on Avionics, flight computers and telemetry. The avionics system forms the electronic nervous system of a rocket.
+
+Sensors provide information about the state of the vehicle, while an embedded controller processes this information and manages data acquisition, storage, communication, and other mission functions.
+
+Working with embedded electronics introduced me to the practical difference between developing a circuit in isolation and developing electronics that have to operate as part of a complete system.
+
+Microcontrollers, sensors, communication interfaces, power supplies, signal conditioning, and data acquisition circuits all have to operate reliably together.
+
+This required attention to issues such as voltage levels, current consumption, grounding, noise, communication protocols, timing, sensor calibration, and fault conditions.
+
+The experience also strengthened my interest in embedded systems and eventually influenced several of my later projects involving Arduino, STM32, sensors, motor control, and instrumentation.
+            
+            A rocket generates a large amount of information during its operation.
+
+Sensors can be used to monitor different physical parameters and provide data that can later be used to understand the behaviour of the vehicle.
+
+However, collecting sensor data is more complicated than simply connecting a sensor to a microcontroller.
+
+The complete measurement chain involves:
+
+Physical quantity → Sensor → Signal conditioning → ADC → Embedded processing → Data storage/telemetry
+
+Each stage can introduce errors.
+
+Sensor noise, calibration errors, ADC resolution, sampling rate, electrical interference, timing inaccuracies, and communication failures can all influence the quality of the final data.
+
+This experience helped develop an appreciation for instrumentation as a complete engineering discipline rather than simply a collection of sensors.</p>
 
             <!-- SECTION -->
             <h2>2. Random</h2>
             <p>This was the 2nd rocket that i had worked on, in the follwowing year 2023 named "Random" completely out of fun, cause I remember someone shared the moon knight meme "Random BullSh*t Go!!" and 
-              it kind of stuck with the team at the time ;) I learnt a lot during that phase, again diving deeper into the field of avionics and developing active datalogging system for the rocket. </p>
+              it kind of stuck with the team at the time ;) I learnt a lot during that phase, again diving deeper into the field of avionics and developing active datalogging system for the rocket. One of the biggest challenges in an aerospace project is integration.
+
+A subsystem can function correctly on its own and still fail when connected to the rest of the system.
+
+For this reason, testing needs to progress systematically from individual components to complete subsystems and eventually to the integrated vehicle.
+
+This involves checking electrical interfaces, communication, power distribution, sensor readings, embedded software behaviour, and mechanical integration.
+
+System-level testing also requires thinking about failure modes.
+
+What happens if a sensor stops responding?
+
+What happens if the supply voltage drops?
+
+What happens if communication is interrupted?
+
+What happens if the measured data becomes unreasonable?
+
+These questions shift the engineering mindset from simply asking "Does it work?" to asking "How does it fail, and how can the system respond? </p>
 
             <!-- SECTION -->
             <h2>3. Chromakrut</h2>
-            <p>Explanation here...</p>
+            <p>The VSLV project was also valuable because it introduced the realities of collaborative engineering.
+
+A rocket cannot be developed by one discipline working independently. Mechanical, electrical, electronics, software, propulsion, and other teams have to coordinate their designs and interfaces.
+
+This creates a strong need for documentation, version control, testing procedures, interface specifications, and clear communication between teams.
+
+The experience provided an early exposure to the engineering practices required when multiple people are simultaneously developing different parts of a complex system.
+
+The association of the project with an ISRO MoU also provided an important academic and technical context, giving the project a connection to India's broader space-technology ecosystem.
+            The most important outcome of the project was not a particular circuit, microcontroller, or software implementation.
+
+It was learning to think about engineering systems as integrated architectures.
+
+A sensor is not just a sensor. It is part of a measurement chain.
+
+A microcontroller is not just a processor. It is part of an embedded system.
+
+A PCB is not just a collection of components. It is an interface between multiple subsystems.
+
+And a rocket is not simply a propulsion system. It is a tightly integrated combination of mechanical, electrical, computational, communication, and control systems.
+
+This systems perspective has continued to influence my subsequent work in embedded systems, robotics, control, instrumentation, and intelligent engineering systems.</p>
 
             <!-- NOTE -->
             <div class="wiki-note">
