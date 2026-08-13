@@ -238,67 +238,71 @@ footer {
 
 
 /* ==============================
-   SOFTWARE & PROGRAMMING
+   SOFTWARE & TOOLS LOGO STRIP
    ============================== */
 
 .skills-section {
-  margin-top: 70px;
+  margin-top: 55px;
 }
 
-.skills-section h2,
-.certifications-section h2 {
-  margin-bottom: 30px;
+.skills-section h2 {
+  margin-bottom: 25px;
 }
 
-.software-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 18px;
-  margin-top: 25px;
+.software-strip {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+
+  padding: 22px 25px;
+
+  background: var(--card-bg, #181d24);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+
+  overflow-x: auto;
 }
 
-.software-card {
-  min-height: 120px;
-  padding: 20px 15px;
+.software-logo {
+  flex: 0 0 auto;
+
+  width: 65px;
+  height: 65px;
 
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  text-align: center;
-
-  background: var(--card-bg, #ffffff);
-  border: 1px solid rgba(128, 128, 128, 0.2);
-  border-radius: 12px;
-
-  transition: transform 0.25s ease,
-              box-shadow 0.25s ease,
-              border-color 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
-.software-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
-  border-color: rgba(128, 128, 128, 0.4);
-}
-
-.software-card i {
+.software-logo i {
   font-size: 42px;
-  margin-bottom: 12px;
 }
 
-.software-card span {
-  font-size: 14px;
-  font-weight: 600;
+.software-logo:hover {
+  transform: translateY(-5px) scale(1.08);
 }
 
-.software-text-logo {
-  font-size: 22px !important;
-  font-weight: 800 !important;
-  margin-bottom: 14px;
+.text-logo {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
+
+/* Mobile */
+@media (max-width: 700px) {
+
+  .software-strip {
+    justify-content: flex-start;
+    gap: 30px;
+    overflow-x: auto;
+  }
+
+}
 
 /* ==============================
    CERTIFICATIONS
