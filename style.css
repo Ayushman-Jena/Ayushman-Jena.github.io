@@ -242,23 +242,23 @@ footer {
    ============================== */
 
 .skills-section {
-  margin-top: 55px;
+  margin-top: 45px;
 }
 
 .skills-section h2 {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .software-strip {
   width: 100%;
-  min-height: 110px;
+  min-height: 95px;
 
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 20px;
+  gap: 10px;
 
-  padding: 18px 30px;
+  padding: 14px 25px;
   box-sizing: border-box;
 
   background: var(--card-bg, #181d24);
@@ -271,39 +271,42 @@ footer {
 
 /* Every logo gets the same visual area */
 .software-logo {
-  flex: 0 0 85px;
+  flex: 0 0 75px;
 
-  width: 85px;
+  width: 75px;
   height: 70px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  gap: 7px;
+    
   transition:
     transform 0.25s ease,
     opacity 0.25s ease;
 }
 
 .software-logo i {
-  font-size: 42px;
+  font-size: 32px;
   line-height: 1;
 }
 
-/* Text-based logos: COMSOL, KiCad, etc. */
-.software-logo .text-logo,
-.text-logo {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.4px;
+/* Tool name */
+.software-logo span {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+
   white-space: nowrap;
+
+  opacity: 0.9;
 }
 
 /* Hover */
 .software-logo:hover {
-  transform: translateY(-4px) scale(1.06);
+  transform: translateY(-3px) scale(1.05);
 }
-
 
 /* ==============================
    MOBILE
@@ -313,23 +316,30 @@ footer {
 
   .software-strip {
     justify-content: flex-start;
-    gap: 18px;
-    padding: 18px 20px;
+    gap: 12px;
+
+    padding: 14px 18px;
+
+    overflow-x: auto;
   }
 
   .software-logo {
-    flex: 0 0 75px;
-    width: 75px;
-    height: 65px;
+    flex: 0 0 70px;
+
+    width: 70px;
+    height: 68px;
   }
 
   .software-logo i {
-    font-size: 38px;
+    font-size: 29px;
   }
 
-  .software-logo .text-logo,
-  .text-logo {
-    font-size: 16px;
+  .software-logo strong {
+    font-size: 14px;
+  }
+
+  .software-logo span {
+    font-size: 11px;
   }
 }
 
