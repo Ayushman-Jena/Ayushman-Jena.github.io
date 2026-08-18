@@ -251,57 +251,86 @@ footer {
 
 .software-strip {
   width: 100%;
+  min-height: 110px;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 25px;
+  justify-content: space-around;
+  gap: 20px;
 
-  padding: 22px 25px;
+  padding: 18px 30px;
+  box-sizing: border-box;
 
   background: var(--card-bg, #181d24);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
 
   overflow-x: auto;
+  scrollbar-width: thin;
 }
 
+/* Every logo gets the same visual area */
 .software-logo {
-  flex: 0 0 auto;
+  flex: 0 0 85px;
 
-  width: 65px;
-  height: 65px;
+  width: 85px;
+  height: 70px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  transition: transform 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
 }
 
 .software-logo i {
   font-size: 42px;
+  line-height: 1;
 }
 
-.software-logo:hover {
-  transform: translateY(-5px) scale(1.08);
-}
-
+/* Text-based logos: COMSOL, KiCad, etc. */
+.software-logo .text-logo,
 .text-logo {
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  white-space: nowrap;
+}
+
+/* Hover */
+.software-logo:hover {
+  transform: translateY(-4px) scale(1.06);
 }
 
 
-/* Mobile */
+/* ==============================
+   MOBILE
+   ============================== */
+
 @media (max-width: 700px) {
 
   .software-strip {
     justify-content: flex-start;
-    gap: 30px;
-    overflow-x: auto;
+    gap: 18px;
+    padding: 18px 20px;
   }
 
+  .software-logo {
+    flex: 0 0 75px;
+    width: 75px;
+    height: 65px;
+  }
+
+  .software-logo i {
+    font-size: 38px;
+  }
+
+  .software-logo .text-logo,
+  .text-logo {
+    font-size: 16px;
+  }
 }
 
 /* ==============================
