@@ -238,6 +238,15 @@ footer {
 
 
 /* ==============================
+   SOFTWARE & TOOLS SECTION
+   ============================== */
+
+.skills-section {
+  margin-top: 70px;
+}
+
+
+/* ==============================
    SOFTWARE & TOOLS LOGO STRIP
    ============================== */
 
@@ -297,7 +306,6 @@ footer {
 .software-logo:hover {
   transform: translateY(-4px) scale(1.05);
 }
-
 /* ==============================
    CERTIFICATIONS
    ============================== */
