@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Focused Transducer Design, Modeling and Development | Ayushman Jena</title>
+
+<!-- MathJax -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+  <nav class="container">
+    <h2 class="logo">Ayushman Jena</h2>
+  </nav>
+</header>
+
+
+<!-- ================= BLOG PAGE ================= -->
+
+<div class="wiki-page">
+
+
+    <!-- ================= BACK ================= -->
+
+    <div class="wiki-back">
+        <a href="../../research/index.html">← Research</a>
+        <a href="../index.html">← Blogs</a>
+        <a href="../../index.html">← Home</a>
+    </div>
+
+
+    <!-- ================= TITLE ================= -->
+
+    <!-- No wiki-hero and no background image -->
+
+    <div class="wiki-title-area">
+
+        <h1>Focused Transducer Design, Modeling and Development</h1>
+
+        <div class="wiki-meta">
+            <span>Ayushman Jena</span>
+            <span>To be added</span>
+            <span>5 min read</span>
+
+            <span class="wiki-tag">Neurostimulation Device</span>
+
+            <span class="wiki-tag">
+                Sponsored by DRDO Life Sciences Research Board
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- ================= CONTENT ROW ================= -->
+
+    <div class="wiki-content-row">
+
+
+        <!-- ================= MAIN ================= -->
+
+        <div class="wiki-main">
+
+
+            <!-- ================= INTRO ================= -->
+
+            <p style="text-align: justify;">
+
+                Transcranial focused ultrasound (tFUS) is an emerging technology
+                that enables non-invasive delivery of acoustic energy to specific
+                regions of the brain. Unlike conventional neuromodulation techniques
+                that rely on electrodes or magnetic fields, tFUS can potentially
+                achieve millimetre-scale spatial targeting while delivering energy
+                through the intact skull.
+
+                The development of a practical tFUS system, however, is not simply
+                a matter of selecting an ultrasound transducer and applying an
+                electrical signal. The acoustic beam must be designed, simulated,
+                experimentally characterized, and eventually optimized for
+                propagation through the skull. My work on the development of a
+                tFUS device therefore follows a complete engineering pipeline—from
+                transducer design and acoustic modelling to experimental validation
+                and automated beam characterization.
+
+            </p>
+
+
+            <p style="text-align: justify;">
+
+                The starting point of the system is a focused piezoelectric
+                transducer. A spherical-cap geometry is particularly attractive
+                for tFUS because the curved aperture naturally converges acoustic
+                waves toward a focal region.
+
+                The geometry of the transducer strongly influences its acoustic
+                behaviour. Parameters such as aperture diameter, radius of
+                curvature, focal length, operating frequency, and piezoelectric
+                material affect the focal position, focal dimensions, acoustic
+                pressure, beam divergence, and sidelobe structure.
+
+                For the experimental system, a focused PZT transducer is used to
+                generate the acoustic field. The transducer is driven by an
+                electrical excitation generated using a waveform generator and
+                amplified before being applied to the piezoelectric element.
+                Pulsed excitation is particularly important for tFUS because it
+                provides control over pulse duration, pulse repetition frequency,
+                duty cycle, and acoustic exposure.
+
+                The electrical-to-acoustic conversion process is therefore an
+                important part of the overall device architecture:
+
+                waveform generation → power amplification → piezoelectric
+                excitation → acoustic propagation → focused pressure field.
+
+            </p>
+
+
+            <!-- ================= PROJECT VIDEO ================= -->
+
+            <div class="wiki-video">
+
+                <video controls muted autoplay loop playsinline preload="metadata">
+
+                    <source
+                        src="../../assets/images/projects/tfus_scan_vdo.mp4"
+                        type="video/mp4">
+
+                    Your browser does not support the video tag.
+
+                </video>
+
+                <div class="wiki-video-caption">
+                    Focused Ultrasound Acoustic Field Scan
+                </div>
+
+            </div>
+
+
+            <!-- ================= SIMULATION ================= -->
+
+            <p style="text-align: justify;">
+
+                Before experimental testing, the acoustic field can be investigated
+                numerically using finite-element modelling.
+
+                A major part of the development process involves building an
+                axisymmetric model of the spherical-cap transducer in COMSOL
+                Multiphysics. The model allows the relationship between transducer
+                geometry and the resulting acoustic field to be studied without
+                having to manufacture and test every possible configuration.
+
+                The simulated field provides important quantities such as acoustic
+                pressure distribution, focal position, focal width, focal length,
+                and beam profile.
+
+                This modelling stage is particularly useful for understanding how
+                changes in parameters such as aperture size, focal length,
+                excitation frequency, and acoustic boundary conditions influence
+                the focus.
+
+                The eventual objective is not simply to obtain a visually appealing
+                simulated focus. The simulation must provide quantitative
+                predictions that can be compared against experimental measurements.
+
+            </p>
+
+
+            <!-- ================= SECTION ================= -->
+
+            <h2>Experimental Characterization Using a Hydrophone</h2>
+
+            <p style="text-align: justify;">
+
+                The next stage is experimental characterization.
+
+                The acoustic field is measured inside a water tank using a
+                hydrophone. Instead of assuming that the transducer produces the
+                beam predicted by simulation, the hydrophone provides a direct
+                measurement of the acoustic pressure generated by the physical
+                device.
+
+                A motorized three-axis scanning system is used to move the
+                hydrophone through the acoustic field. By recording the hydrophone
+                signal at different spatial positions, the pressure distribution
+                can be reconstructed.
+
+                This transforms the measurement process from a single-point
+                measurement into a three-dimensional beam-characterization system.
+
+                The measured voltage from the hydrophone can be converted into
+                acoustic pressure using the calibrated hydrophone sensitivity.
+                From the pressure waveform, quantities such as peak pressure and
+                acoustic intensity can subsequently be calculated.
+
+            </p>
+
+
+            <!-- ================= EQUATION ================= -->
+
+            <div class="equation">
+
+                \[
+                \nabla^2 p -
+                \frac{1}{c^2}
+                \frac{\partial^2 p}{\partial t^2}
+                = 0
+                \]
+
+            </div>
+
+
+            <!-- ================= SECTION ================= -->
+
+            <h2>Automated Three-Axis Beam Scanning</h2>
+
+            <p style="text-align: justify;">
+
+                One of the key engineering components of the project is the
+                development of an automated XYZ scanning system.
+
+                The scanning mechanism uses stepper motors and motor drivers
+                controlled through an embedded controller. The hydrophone can
+                therefore be moved systematically through the acoustic field
+                according to a predefined scanning pattern.
+
+                Raster and serpentine scanning strategies can be used to acquire
+                two-dimensional beam maps efficiently. By combining motion data
+                with synchronized hydrophone measurements, the system can
+                reconstruct axial and transverse beam profiles.
+
+                The resulting data can then be visualized as 2D and 3D acoustic
+                maps.
+
+                An important aspect of this development is automation. Rather than
+                manually positioning the hydrophone and recording individual
+                measurements, the scanning platform provides a repeatable method
+                for characterizing the transducer.
+
+            </p>
+
+
+            <!-- ================= SECTION ================= -->
+
+            <h2>Simulation–Experiment Correlation</h2>
+
+            <p style="text-align: justify;">
+
+                A major objective of the device-development process is to establish
+                agreement between numerical simulations and experimental
+                measurements.
+
+                The COMSOL model predicts the acoustic field, while the
+                hydrophone-based scanning system measures the physical field.
+                Comparing the two allows discrepancies to be identified.
+
+                Differences can arise from several sources, including transducer
+                manufacturing tolerances, material properties, electrical
+                impedance, mounting conditions, hydrophone response, reflections,
+                alignment errors, and simplifications in the numerical model.
+
+                Instead of treating these differences simply as errors, they
+                provide information that can be used to improve the model and
+                refine the experimental setup.
+
+                This creates an iterative engineering loop:
+
+                <br><br>
+
+                <strong>
+                    Design → Simulation → Fabrication → Measurement → Validation → Optimization
+                </strong>
+
+                <br><br>
+
+                Such a loop is essential for developing a reliable ultrasound
+                system.
+
+            </p>
+
+
+            <!-- ================= NOTE ================= -->
+
+            <div class="wiki-note">
+
+                <strong>Note:</strong>
+                Important insight here.
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <div class="wiki-sidebar">
+
+
+            <!-- ================= INFOBOX ================= -->
+
+            <div class="wiki-infobox">
+
+                <img
+                    src="../../assets/images/projects/scan_setup.png"
+                    alt="Hydrophone Scan Setup">
+
+            </div>
+
+
+            <!-- ================= FIGURE ================= -->
+
+            <div class="wiki-fig">
+
+                <img
+                    src="../../assets/images/projects/tfus_scan.png"
+                    alt="Focused Ultrasound Scan">
+
+                <div class="wiki-fig-caption">
+                    Acoustic Field Scan
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= PROJECT GALLERY ================= -->
+
+<div class="wiki-gallery">
+
+    <h2>Project Gallery</h2>
+
+    <div class="wiki-gallery-grid">
+
+        <div class="wiki-gallery-item">
+
+            <img
+                src="../../assets/images/projects/gallery/vslv1.jpg"
+                alt="Focused Transducer Development">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
