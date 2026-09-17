@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ayushman Jena | Academic Profile</title>
+
+  <!-- Existing website stylesheet -->
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- MathJax -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+
+    /* =========================================================
+       ACADEMIC PROFILE PAGE
+       ========================================================= */
+
+    .bio-page {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 60px 0 90px;
+    }
+
+
+    /* =========================================================
+       PROFILE HEADER
+       ========================================================= */
+
+    .profile-header {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 35px;
+
+      padding: 35px;
+
+      background: var(--card-bg, #181d24);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+
+      box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+
+      border-radius: 16px;
+
+      object-fit: cover;
+
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .profile-name {
+      margin: 0 0 8px;
+
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+
+      color: var(--text-color, #ffffff);
+    }
+
+    .profile-title {
+      margin: 0 0 8px;
+
+      font-size: 1.15rem;
+      font-weight: 500;
+
+      color: var(--accent-color, #64b5f6);
+    }
+
+    .profile-affiliation {
+      margin: 0 0 20px;
+
+      color: var(--secondary-text, #aeb6c2);
+      line-height: 1.7;
+    }
+
+    .profile-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      margin-bottom: 22px;
+
+      color: var(--secondary-text, #aeb6c2);
+      font-size: 0.95rem;
+    }
+
+
+    /* =========================================================
+       PROFILE LINKS
+       ========================================================= */
+
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .profile-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 9px 14px;
+
+      border-radius: 8px;
+
+      text-decoration: none;
+
+      color: var(--text-color, #ffffff);
+
+      background: rgba(255,255,255,0.05);
+
+      border: 1px solid rgba(255,255,255,0.08);
+
+      font-size: 0.9rem;
+
+      transition: all 0.25s ease;
+    }
+
+    .profile-link:hover {
+      transform: translateY(-2px);
+
+      border-color: var(--accent-color, #64b5f6);
+
+      color: var(--accent-color, #64b5f6);
+
+      background: rgba(255,255,255,0.08);
+    }
+
+
+    /* =========================================================
+       SECTION
+       ========================================================= */
+
+    .bio-section {
+      margin-top: 55px;
+    }
+
+    .bio-section h2 {
+      margin: 0 0 22px;
+
+      font-size: 1.45rem;
+      font-weight: 650;
+
+      color: var(--text-color, #ffffff);
+
+      padding-bottom: 12px;
+
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .bio-section h2::before {
+      content: "";
+      display: inline-block;
+
+      width: 4px;
+      height: 22px;
+
+      margin-right: 12px;
+
+      vertical-align: -4px;
+
+      background: var(--accent-color, #64b5f6);
+
+      border-radius: 3px;
+    }
+
+
+    /* =========================================================
+       BIO
+       ========================================================= */
+
+    .bio-text {
+      max-width: 900px;
+
+      color: var(--secondary-text, #b5bdc9);
+
+      line-height: 1.85;
+
+      font-size: 1rem;
+    }
+
+    .bio-text p {
+      margin-bottom: 16px;
+    }
+
+
+    /* =========================================================
+       RESEARCH INTERESTS
+       ========================================================= */
+
+    .research-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .research-tag {
+      padding: 9px 15px;
+
+      border-radius: 50px;
+
+      background: rgba(255,255,255,0.045);
+
+      border: 1px solid rgba(255,255,255,0.09);
+
+      color: var(--secondary-text, #c3cad3);
+
+      font-size: 0.9rem;
+    }
+
+
+    /* =========================================================
+       RESEARCH / PROJECT CARDS
+       ========================================================= */
+
+    .profile-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 18px;
+    }
+
+    .profile-card {
+      padding: 23px;
+
+      background: var(--card-bg, #181d24);
+
+      border: 1px solid rgba(255,255,255,0.07);
+
+      border-radius: 14px;
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-3px);
+
+      border-color:
+        rgba(255,255,255,0.16);
+    }
+
+    .profile-card h3 {
+      margin: 0 0 9px;
+
+      font-size: 1.05rem;
+
+      color: var(--text-color, #ffffff);
+    }
+
+    .profile-card p {
+      margin: 0;
+
+      color: var(--secondary-text, #adb5c0);
+
+      line-height: 1.65;
+
+      font-size: 0.94rem;
+    }
+
+    .profile-card .year {
+      display: block;
+
+      margin-bottom: 8px;
+
+      font-size: 0.82rem;
+
+      color: var(--accent-color, #64b5f6);
+    }
+
+
+    /* =========================================================
+       ACADEMIC TIMELINE
+       ========================================================= */
+
+    .timeline {
+      position: relative;
+
+      margin-left: 10px;
+    }
+
+    .timeline::before {
+      content: "";
+
+      position: absolute;
+
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+
+      width: 1px;
+
+      background: rgba(255,255,255,0.12);
+    }
+
+    .timeline-item {
+      position: relative;
+
+      padding-left: 32px;
+
+      margin-bottom: 32px;
+    }
+
+    .timeline-item::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 7px;
+
+      width: 13px;
+      height: 13px;
+
+      border-radius: 50%;
+
+      background: var(--accent-color, #64b5f6);
+
+      border: 3px solid
+        var(--background-color, #0f1217);
+    }
+
+    .timeline-date {
+      margin-bottom: 5px;
+
+      color: var(--accent-color, #64b5f6);
+
+      font-size: 0.85rem;
+
+      font-weight: 600;
+    }
+
+    .timeline-title {
+      margin: 0 0 4px;
+
+      color: var(--text-color, #ffffff);
+
+      font-size: 1.05rem;
+    }
+
+    .timeline-subtitle {
+      margin: 0;
+
+      color: var(--secondary-text, #adb5c0);
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       PUBLICATIONS
+       ========================================================= */
+
+    .publication {
+      padding: 20px 0;
+
+      border-bottom: 1px solid
+        rgba(255,255,255,0.07);
+    }
+
+    .publication:last-child {
+      border-bottom: none;
+    }
+
+    .publication-year {
+      display: inline-block;
+
+      margin-bottom: 7px;
+
+      font-size: 0.82rem;
+
+      color: var(--accent-color, #64b5f6);
+
+      font-weight: 600;
+    }
+
+    .publication-title {
+      margin: 0 0 6px;
+
+      font-size: 1rem;
+
+      line-height: 1.55;
+
+      color: var(--text-color, #ffffff);
+    }
+
+    .publication-authors {
+      margin: 0;
+
+      color: var(--secondary-text, #aeb6c2);
+
+      font-size: 0.9rem;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       SKILLS
+       ========================================================= */
+
+    .skills-list {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 12px;
+    }
+
+    .skill-item {
+      padding: 14px 16px;
+
+      background: rgba(255,255,255,0.035);
+
+      border: 1px solid rgba(255,255,255,0.07);
+
+      border-radius: 10px;
+
+      color: var(--secondary-text, #b7bec8);
+    }
+
+    .skill-item strong {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: var(--text-color, #ffffff);
+    }
+
+
+    /* =========================================================
+       RESEARCH FIELDS
+       ========================================================= */
+
+    .field-list {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 10px;
+    }
+
+    .field {
+      padding: 13px 15px;
+
+      background: rgba(255,255,255,0.035);
+
+      border-radius: 9px;
+
+      border: 1px solid rgba(255,255,255,0.06);
+
+      color: var(--secondary-text, #b7bec8);
+
+      font-size: 0.9rem;
+    }
+
+
+    /* =========================================================
+       FOOTER PROFILE NOTE
+       ========================================================= */
+
+    .profile-footer {
+      margin-top: 60px;
+
+      padding-top: 25px;
+
+      border-top: 1px solid
+        rgba(255,255,255,0.08);
+
+      color: var(--secondary-text, #8f98a5);
+
+      font-size: 0.85rem;
+
+      text-align: center;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 800px) {
+
+      .profile-header {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+      }
+
+      .profile-photo {
+        margin: 0 auto;
+      }
+
+      .profile-links {
+        justify-content: center;
+      }
+
+      .profile-location {
+        justify-content: center;
+      }
+
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-list {
+        grid-template-columns: 1fr;
+      }
+
+      .field-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    @media (max-width: 500px) {
+
+      .bio-page {
+        width: 90%;
+
+        padding-top: 35px;
+      }
+
+      .profile-header {
+        padding: 25px 20px;
+      }
+
+      .profile-photo {
+        width: 145px;
+        height: 145px;
+      }
+
+      .profile-name {
+        font-size: 2rem;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     ACADEMIC PROFILE
+     ========================================================= -->
+
+<main class="bio-page">
+
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
+  <section class="profile-header">
+
+    <!-- Replace with your actual photograph -->
+    <img
+      src="../assets/profile.jpg"
+      alt="Ayushman Jena"
+      class="profile-photo"
+    >
+
+
+    <div>
+
+      <h1 class="profile-name">
+        Ayushman Jena
+      </h1>
+
+      <p class="profile-title">
+        Junior Research Fellow
+      </p>
+
+      <p class="profile-affiliation">
+        Department of Instrumentation and Control Engineering<br>
+        National Institute of Technology Tiruchirappalli
+      </p>
+
+      <div class="profile-location">
+        <i class="fa-solid fa-location-dot"></i>
+        Tiruchirappalli, Tamil Nadu, India
+      </div>
+
+
+      <!-- ================================================
+           EXTERNAL LINKS
+           ================================================ -->
+
+      <div class="profile-links">
+
+        <a
+          href="https://orcid.org/0009-0004-5086-3063"
+          target="_blank"
+          class="profile-link"
+        >
+          <i class="fa-brands fa-orcid"></i>
+          ORCID
+        </a>
+
+
+        <!-- Replace with your actual Google Scholar URL -->
+
+        <a
+          href="#"
+          target="_blank"
+          class="profile-link"
+        >
+          <i class="fa-solid fa-graduation-cap"></i>
+          Google Scholar
+        </a>
+
+
+        <!-- Replace with your actual ResearchGate URL -->
+
+        <a
+          href="#"
+          target="_blank"
+          class="profile-link"
+        >
+          <i class="fa-brands fa-researchgate"></i>
+          ResearchGate
+        </a>
+
+
+        <a
+          href="https://github.com/"
+          target="_blank"
+          class="profile-link"
+        >
+          <i class="fa-brands fa-github"></i>
+          GitHub
+        </a>
+
+
+        <a
+          href="../cv.html"
+          class="profile-link"
+        >
+          <i class="fa-solid fa-file-lines"></i>
+          CV
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       BIO
+       ======================================================= -->
+
+  <section class="bio-section">
+
+    <h2>Bio</h2>
+
+    <div class="bio-text">
+
+      <p>
+        Ayushman Jena is a Junior Research Fellow in the Department of
+        Instrumentation and Control Engineering at the National Institute
+        of Technology Tiruchirappalli. He received his B.Tech. degree in
+        Electrical Engineering from Veer Surendra Sai University of
+        Technology, Burla.
+      </p>
+
+      <p>
+        His research interests lie at the intersection of robotics,
+        control systems, machine learning, and physical artificial
+        intelligence. His work focuses on developing intelligent
+        systems that combine mathematical modeling, perception,
+        learning, and feedback control to enable autonomous physical
+        systems.
+      </p>
+
+      <p>
+        His technical background spans nonlinear and model predictive
+        control, robotic systems, embedded systems, machine learning,
+        signal processing, numerical simulation, and computational
+        modeling. He has also worked on experimental robotic scanning
+        systems and ultrasonic sensing platforms.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       RESEARCH INTERESTS
+       ======================================================= -->
+
+  <section class="bio-section">
+
+    <h2>Research Interests</h2>
+
+    <div class="research-tags">
+
+      <span class="research-tag">
+        Robotics
+      </span>
+
+      <span class="research-tag">
+        Control Systems
+      </span>
+
+      <span class="research-tag">
+        Nonlinear Control
+      </span>
+
+      <span class="research-tag">
+        Model Predictive Control
+      </span>
+
+      <span class="research-tag">
+        Machine Learning
+      </span>
+
+      <span class="research-tag">
+        Physical AI
+      </span>
+
+      <span class="research-tag">
+        Embodied Intelligence
+      </span>
+
+      <span class="research-tag">
+        Robot Learning
+      </span>
+
+      <span class="research-tag">
+        Autonomous Systems
+      </span>
+
+      <span class="research-tag">
+        Sensor Fusion
+      </span>
+
+      <span class="research-tag">
+        Embedded Systems
+      </span>
+
+      <span class="research-tag">
+        Intelligent Automation
+      </span>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       CURRENT RESEARCH
+       ======================================================= -->
+
+  <section class="bio-section">
+
+    <h2>Current Research</h2>
+
+    <div class="profile-grid">
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          ROBOTICS & CONTROL
+        </span>
+
+        <h3>
+          Intelligent Robotic Systems
+        </h3>
+
+        <p>
+          Development of robotic systems combining dynamic modeling,
+          nonlinear control, model predictive control and intelligent
+          decision-making for autonomous physical systems.
+        </p>
+
+      </article>
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          AI & ROBOT LEARNING
+        </span>
+
+        <h3>
+          Physical AI & Embodied Intelligence
+        </h3>
+
+        <p>
+          Exploring machine learning approaches that allow physical
+          agents to perceive, reason, learn and interact with their
+          environments through feedback and action.
+        </p>
+
+      </article>
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          AUTONOMOUS SYSTEMS
+        </span>
+
+        <h3>
+          Adaptive Robotic Scanning
+        </h3>
+
+        <p>
+          Intelligent scanning and characterization systems integrating
+          robotic motion, sensing, data acquisition and computational
+          reconstruction.
+        </p>
+
+      </article>
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          COMPUTATIONAL METHODS
+        </span>
+
+        <h3>
+          Learning-Based Physical Modeling
+        </h3>
+
+        <p>
+          Investigating the combination of physics-based models,
+          numerical simulation and machine learning for reconstruction,
+          prediction and control of physical systems.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       SELECTED PROJECTS
+       ======================================================= -->
+
+  <section class="bio-section">
+
+    <h2>Selected Projects</h2>
+
+    <div class="profile-grid">
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          ROBOTICS
+        </span>
+
+        <h3>
+          Nonlinear Model Predictive Control of a Robotic Manipulator
+        </h3>
+
+        <p>
+          Design and experimental validation of a nonlinear model
+          predictive controller for a gantry robotic manipulator,
+          incorporating dynamic modeling and constrained predictive
+          control.
+        </p>
+
+      </article>
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          ROBOTIC SENSING
+        </span>
+
+        <h3>
+          Automated Ultrasonic C-Scan System
+        </h3>
+
+        <p>
+          Development of a three-axis robotic scanning platform using
+          Arduino-based motion control, stepper motor drivers,
+          hydrophone measurements and automated data acquisition.
+        </p>
+
+      </article>
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          MACHINE LEARNING
+        </span>
+
+        <h3>
+          Physics-Informed Beam Reconstruction
+        </h3>
+
+        <p>
+          Investigation of interpolation and neural-network-based
+          super-resolution methods for reconstructing spatial acoustic
+          fields from sparse measurements.
+        </p>
+
+      </article>
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          SPACE SYSTEMS
+        </span>
+
+        <h3>
+          Energy Harvesting CubeSat
+        </h3>
+
+        <p>
+          Conceptual development of energy harvesting and power
+          management approaches for small satellite systems.
+        </p>
+
+      </article>
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          STUDENT ROCKetry
+        </span>
+
+        <h3>
+          VSLV Student Rocketry Mission
+        </h3>
+
+        <p>
+          Student rocketry project involving aerospace systems,
+          electronics, embedded systems and experimental development
+          under an academic collaboration with ISRO.
+        </p>
+
+      </article>
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          EMBEDDED SYSTEMS
+        </span>
+
+        <h3>
+          Intelligent Embedded Systems
+        </h3>
+
+        <p>
+          Design and implementation of embedded sensing, control and
+          data-acquisition systems using microcontrollers and
+          real-time instrumentation.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       PUBLICATIONS
+       ======================================================= -->
+
+  <section class="bio-section">
+
+    <h2>Selected Publications</h2>
+
+
+    <div class="publication">
+
+      <span class="publication-year">
+        2026
+      </span>
+
+      <h3 class="publication-title">
+        Design and experimentation of nonlinear model predictive
+        control for gantry robotic manipulator
+      </h3>
+
+      <p class="publication-authors">
+        Ayushman Jena, Ayan Fareed Siddiqui, Ezhilarasi Deenadayalan.
+        IEEE I5CPS-2026, NIT Puducherry.
+      </p>
+
+    </div>
+
+
+    <div class="publication">
+
+      <span class="publication-year">
+        2025
+      </span>
+
+      <h3 class="publication-title">
+        Experimental and computational investigation of focused
+        ultrasonic transducer systems
+      </h3>
+
+      <p class="publication-authors">
+        Ayushman Jena and collaborators.
+      </p>
+
+    </div>
+
+
+    <div class="publication">
+
+      <span class="publication-year">
+        Publications
+      </span>
+
+      <h3 class="publication-title">
+        More research publications and conference contributions
+      </h3>
+
+      <p class="publication-authors">
+        Complete publication record available through the academic
+        profiles linked above.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       EXPERIENCE
+       ======================================================= -->
+
+  <section class="bio-section">
+
+    <h2>Academic & Research Experience</h2>
+
+    <div class="timeline">
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-date">
+          CURRENT
+        </div>
+
+        <h3 class="timeline-title">
+          Junior Research Fellow
+        </h3>
+
+        <p class="timeline-subtitle">
+          Department of Instrumentation and Control Engineering<br>
+          National Institute of Technology Tiruchirappalli
+        </p>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-date">
+          2024
+        </div>
+
+        <h3 class="timeline-title">
+          Research / Summer Internship
+        </h3>
+
+        <p class="timeline-subtitle">
+          Defence Research and Development Organisation (DRDO)
+        </p>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-date">
+          2020 – 2024
+        </div>
+
+        <h3 class="timeline-title">
+          B.Tech. — Electrical Engineering
+        </h3>
+
+        <p class="timeline-subtitle">
+          Veer Surendra Sai University of Technology, Burla
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       EDUCATION
+       ======================================================= -->
+
+  <section class="bio-section">
+
+    <h2>Education</h2>
+
+    <div class="profile-grid">
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          B.TECH. · 2024
+        </span>
+
+        <h3>
+          Electrical Engineering
+        </h3>
+
+        <p>
+          Veer Surendra Sai University of Technology (VSSUT), Burla,
+          Odisha, India.
+        </p>
+
+      </article>
+
+
+      <article class="profile-card">
+
+        <span class="year">
+          CURRENT
+        </span>
+
+        <h3>
+          Research — Instrumentation & Control
+        </h3>
+
+        <p>
+          National Institute of Technology Tiruchirappalli,
+          Tamil Nadu, India.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       TECHNICAL SKILLS
+       ======================================================= -->
+
+  <section class="bio-section">
+
+    <h2>Technical Skills</h2>
+
+    <div class="skills-list">
+
+
+      <div class="skill-item">
+
+        <strong>
+          Programming
+        </strong>
+
+        Python · MATLAB · C/C++ · Embedded C
+
+      </div>
+
+
+      <div class="skill-item">
+
+        <strong>
+          Robotics & Control
+        </strong>
+
+        NMPC · Nonlinear Control · State Estimation ·
+        Sensor Fusion · Robotic Systems
+
+      </div>
+
+
+      <div class="skill-item">
+
+        <strong>
+          Machine Learning
+        </strong>
+
+        PyTorch · NumPy · SciPy · pandas ·
+        Neural Networks · Deep Learning
+
+      </div>
+
+
+      <div class="skill-item">
+
+        <strong>
+          Simulation
+        </strong>
+
+        MATLAB/Simulink · COMSOL Multiphysics ·
+        CST Studio Suite
+
+      </div>
+
+
+      <div class="skill-item">
+
+        <strong>
+          Embedded Systems
+        </strong>
+
+        Arduino · STM32 · ATmega · Sensors ·
+        Data Acquisition
+
+      </div>
+
+
+      <div class="skill-item">
+
+        <strong>
+          Hardware & Design
+        </strong>
+
+        KiCad · PCB Design · Motor Control ·
+        Instrumentation
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       RESEARCH FIELDS
+       ======================================================= -->
+
+  <section class="bio-section">
+
+    <h2>Fields of Research</h2>
+
+    <div class="field-list">
+
+      <div class="field">
+        Robotics
+      </div>
+
+      <div class="field">
+        Control Engineering
+      </div>
+
+      <div class="field">
+        Artificial Intelligence
+      </div>
+
+      <div class="field">
+        Machine Learning
+      </div>
+
+      <div class="field">
+        Autonomous Systems
+      </div>
+
+      <div class="field">
+        Physical AI
+      </div>
+
+      <div class="field">
+        Embedded Systems
+      </div>
+
+      <div class="field">
+        Sensor Fusion
+      </div>
+
+      <div class="field">
+        Computational Modeling
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+
+  <div class="profile-footer">
+
+    Ayushman Jena · Robotics · Control · AI · Physical Intelligence
+
+  </div>
+
+
+</main>
+
+
+</body>
+</html>
