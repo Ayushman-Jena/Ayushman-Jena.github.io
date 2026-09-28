@@ -363,6 +363,48 @@
 
 
     /* =========================================================
+   TWO-COLUMN ACADEMIC / RESEARCH TIMELINES
+   ========================================================= */
+
+.timeline-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  width: 100%;
+}
+
+.timeline-column {
+  min-width: 0;
+}
+
+.timeline-column-title {
+  margin: 0 0 25px;
+
+  color: var(--text-color, #ffffff);
+
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.timeline-column .timeline {
+  margin-left: 10px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .timeline-columns {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+}
+
+    /* =========================================================
        PUBLICATIONS
        ========================================================= */
 
@@ -723,15 +765,11 @@
       </span>
 
       <span class="research-tag">
+        Robot Learning
+      </span>
+      
+      <span class="research-tag">
         Control Systems
-      </span>
-
-      <span class="research-tag">
-        Nonlinear Control
-      </span>
-
-      <span class="research-tag">
-        Model Predictive Control
       </span>
 
       <span class="research-tag">
@@ -739,7 +777,11 @@
       </span>
 
       <span class="research-tag">
-        Physical AI
+        Deep Learning
+      </span>
+
+      <span class="research-tag">
+        Artificial Intelligence
       </span>
 
       <span class="research-tag">
@@ -747,24 +789,13 @@
       </span>
 
       <span class="research-tag">
-        Robot Learning
-      </span>
-
-      <span class="research-tag">
-        Autonomous Systems
-      </span>
-
-      <span class="research-tag">
-        Sensor Fusion
+        Intelligent Automation
       </span>
 
       <span class="research-tag">
         Embedded Systems
       </span>
 
-      <span class="research-tag">
-        Intelligent Automation
-      </span>
 
     </div>
 
@@ -790,7 +821,7 @@
         </span>
 
         <h3>
-          Intelligent Robotic Systems
+          Transcranial Focused Ulrasound Stimulation for Cognitive Enhancement in Military Scenario
         </h3>
 
         <p>
@@ -1021,42 +1052,6 @@
 
     </div>
 
-
-    <div class="publication">
-
-      <span class="publication-year">
-        2025
-      </span>
-
-      <h3 class="publication-title">
-        Experimental and computational investigation of focused
-        ultrasonic transducer systems
-      </h3>
-
-      <p class="publication-authors">
-        Ayushman Jena and collaborators.
-      </p>
-
-    </div>
-
-
-    <div class="publication">
-
-      <span class="publication-year">
-        Publications
-      </span>
-
-      <h3 class="publication-title">
-        More research publications and conference contributions
-      </h3>
-
-      <p class="publication-authors">
-        Complete publication record available through the academic
-        profiles linked above.
-      </p>
-
-    </div>
-
   </section>
 
 
@@ -1064,68 +1059,94 @@
   <!-- =======================================================
        EXPERIENCE
        ======================================================= -->
+<section class="bio-section">
 
-  <section class="bio-section">
+  <h2>Academic & Research Experience</h2>
 
-    <h2>Academic & Research Experience</h2>
+  <div class="timeline-columns">
 
-    <div class="timeline">
+    <!-- ================= ACADEMIC ================= -->
 
+    <div class="timeline-column">
 
-      <div class="timeline-item">
+      <h3 class="timeline-column-title">
+        Academic Experience
+      </h3>
 
-        <div class="timeline-date">
-          CURRENT
+      <div class="timeline">
+
+        <div class="timeline-item">
+
+          <div class="timeline-date">
+            2020 – 2024
+          </div>
+
+          <h3 class="timeline-title">
+            B.Tech. — Electrical Engineering
+          </h3>
+
+          <p class="timeline-subtitle">
+            Veer Surendra Sai University of Technology, Burla
+          </p>
+
         </div>
-
-        <h3 class="timeline-title">
-          Junior Research Fellow
-        </h3>
-
-        <p class="timeline-subtitle">
-          Department of Instrumentation and Control Engineering<br>
-          National Institute of Technology Tiruchirappalli
-        </p>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-date">
-          2024
-        </div>
-
-        <h3 class="timeline-title">
-          Research / Summer Internship
-        </h3>
-
-        <p class="timeline-subtitle">
-          Defence Research and Development Organisation (DRDO)
-        </p>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-date">
-          2020 – 2024
-        </div>
-
-        <h3 class="timeline-title">
-          B.Tech. — Electrical Engineering
-        </h3>
-
-        <p class="timeline-subtitle">
-          Veer Surendra Sai University of Technology, Burla
-        </p>
 
       </div>
 
     </div>
 
-  </section>
+
+    <!-- ================= RESEARCH ================= -->
+
+    <div class="timeline-column">
+
+      <h3 class="timeline-column-title">
+        Research Experience
+      </h3>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+
+          <div class="timeline-date">
+            CURRENT
+          </div>
+
+          <h3 class="timeline-title">
+            Junior Research Fellow
+          </h3>
+
+          <p class="timeline-subtitle">
+            Department of Instrumentation and Control Engineering<br>
+            National Institute of Technology Tiruchirappalli
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-date">
+            2024
+          </div>
+
+          <h3 class="timeline-title">
+            Research / Summer Internship
+          </h3>
+
+          <p class="timeline-subtitle">
+            Defence Research and Development Organisation (DRDO)
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 
 
