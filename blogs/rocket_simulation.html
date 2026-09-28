@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Standard Flight Trajectory Simulation of Sounding Rockets | Ayushman Jena</title>
+
+<!-- MathJax -->
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <h2 class="logo">Ayushman Jena</h2>
+  </nav>
+</header>
+
+<div class="wiki-page">
+
+```
+<!-- BACK -->
+<div class="wiki-back">
+    <a href="../blogs/index.html">← Blogs</a>
+    <a href="../index.html">← Home</a>
+</div>
+
+<!-- TITLE -->
+<div class="wiki-title-area">
+    <h1>Standard Flight Trajectory Simulation of Sounding Rockets</h1>
+
+    <div class="wiki-meta">
+        <span>Ayushman Jena</span>
+        <span>September 2026</span>
+        <span>12 min read</span>
+
+        <span class="wiki-tag">Rocketry</span>
+        <span class="wiki-tag">Flight Dynamics</span>
+        <span class="wiki-tag">Simulation</span>
+        <span class="wiki-tag">Control</span>
+    </div>
+</div>
+
+<!-- CONTENT ROW -->
+<div class="wiki-content-row">
+
+    <!-- MAIN -->
+    <div class="wiki-main">
+
+        <!-- INTRO -->
+        <p>
+            A sounding rocket trajectory is fundamentally an initial-value problem in
+            flight dynamics. Given the rocket's initial state, mass properties,
+            propulsion characteristics, aerodynamic coefficients, atmospheric
+            conditions, and launch geometry, the objective is to determine the
+            position and velocity of the vehicle throughout its flight.
+        </p>
+
+        <p>
+            For a small sounding rocket intended to reach approximately
+            \(1-1.5~\mathrm{km}\), a three-degree-of-freedom (3-DOF) point-mass
+            model provides a useful first-order representation. The rocket is
+            represented by its translational position and velocity while its attitude
+            is represented through the flight-path direction.
+        </p>
+
+        <p>
+            The four principal external effects are thrust, aerodynamic drag,
+            gravity, and—in a more complete model—aerodynamic lift. For a slender
+            sounding rocket flying close to its nominal launch axis, lift can initially
+            be neglected and the trajectory can be described primarily through
+            thrust, drag, and gravity.
+        </p>
+
+        <!-- NOTE -->
+        <div class="wiki-note">
+            <strong>Modeling assumption:</strong>
+            The K-class solid motor is represented by its experimentally obtained or
+            manufacturer-supplied thrust-time curve. The trajectory model does not
+            attempt to derive the internal grain geometry, chamber design, or nozzle
+            dimensions.
+        </div>
+
+        <!-- SECTION 1 -->
+        <h2>1. Coordinate System</h2>
+
+        <p>
+            Consider a vertical launch coordinate system with \(x\) representing
+            downrange displacement and \(z\) representing altitude. The rocket
+            position is
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf r =
+        \begin{bmatrix}
+        x\\
+        z
+        \end{bmatrix}
+        \]
+        </div>
+
+        <p>
+            and the velocity vector is
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf v =
+        \begin{bmatrix}
+        v_x\\
+        v_z
+        \end{bmatrix}.
+        \]
+        </div>
+
+        <p>
+            For a launch angle \(\theta\) measured from the local horizontal,
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf v =
+        V
+        \begin{bmatrix}
+        \cos\theta\\
+        \sin\theta
+        \end{bmatrix}.
+        \]
+        </div>
+
+        <p>
+            Therefore,
+        </p>
+
+        <div class="equation">
+        \[
+        v_x = V\cos\theta,
+        \qquad
+        v_z = V\sin\theta.
+        \]
+        </div>
+
+
+        <!-- SECTION 2 -->
+        <h2>2. Equations of Motion</h2>
+
+        <p>
+            The translational dynamics follow Newton's second law:
+        </p>
+
+        <div class="equation">
+        \[
+        m(t)\frac{d\mathbf v}{dt}
+        =
+        \mathbf F_T+
+        \mathbf F_D+
+        \mathbf F_g.
+        \]
+        </div>
+
+        <p>
+            Hence,
+        </p>
+
+        <div class="equation">
+        \[
+        \frac{d\mathbf v}{dt}
+        =
+        \frac{1}{m(t)}
+        \left(
+        \mathbf F_T+
+        \mathbf F_D
+        \right)
+        +
+        \mathbf g.
+        \]
+        </div>
+
+        <p>
+            This is the basic form used in a 3-DOF rocket trajectory model.
+            NASA's 3-DOF rocket dynamics formulation similarly represents
+            acceleration using thrust, aerodynamic drag, atmospheric density,
+            vehicle mass, and gravity.
+        </p>
+
+        <p>
+            The position dynamics are
+        </p>
+
+        <div class="equation">
+        \[
+        \frac{d\mathbf r}{dt}=\mathbf v.
+        \]
+        </div>
+
+        <p>
+            Therefore, the complete state vector can be written as
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf X =
+        \begin{bmatrix}
+        x & z & v_x & v_z
+        \end{bmatrix}^{T}.
+        \]
+        </div>
+
+        <p>
+            The trajectory simulation is consequently an initial-value problem:
+        </p>
+
+        <div class="equation">
+        \[
+        \dot{\mathbf X}
+        =
+        f(t,\mathbf X).
+        \]
+        </div>
+
+
+        <!-- SECTION 3 -->
+        <h2>3. Propulsion Model</h2>
+
+        <p>
+            For a solid-propellant sounding rocket, the most practical trajectory
+            simulation approach is to use a thrust-time profile
+            \(T(t)\). The thrust is zero before ignition and after motor burnout:
+        </p>
+
+        <div class="equation">
+        \[
+        T(t)=
+        \begin{cases}
+        0, & t<t_i\\
+        T_{\mathrm{motor}}(t), & t_i\leq t\leq t_b\\
+        0, & t>t_b
+        \end{cases}
+        \]
+        </div>
+
+        <p>
+            where \(t_i\) is ignition time and \(t_b\) is burnout time.
+        </p>
+
+        <p>
+            The total impulse of the motor is
+        </p>
+
+        <div class="equation">
+        \[
+        I_t =
+        \int_{t_i}^{t_b}T(t)\,dt.
+        \]
+        </div>
+
+        <p>
+            The average thrust can therefore be estimated as
+        </p>
+
+        <div class="equation">
+        \[
+        \bar T =
+        \frac{I_t}{t_b-t_i}.
+        \]
+        </div>
+
+        <p>
+            For trajectory simulation, however, the instantaneous value
+            \(T(t)\) should be retained whenever a measured thrust curve is
+            available. This is particularly important because a solid motor does
+            not generally produce constant thrust.
+        </p>
+
+
+        <!-- SECTION 4 -->
+        <h2>4. Time-Varying Rocket Mass</h2>
+
+        <p>
+            During powered flight the rocket mass decreases as propellant is
+            consumed. The instantaneous mass is
+        </p>
+
+        <div class="equation">
+        \[
+        m(t)=m_0-m_p(t),
+        \]
+        </div>
+
+        <p>
+            where \(m_0\) is the launch mass and \(m_p(t)\) is the mass of
+            propellant consumed by time \(t\).
+        </p>
+
+        <p>
+            The propellant mass flow rate is related to thrust through the
+            effective exhaust velocity:
+        </p>
+
+        <div class="equation">
+        \[
+        T(t)\approx \dot m_p(t)V_{\mathrm{eq}}(t).
+        \]
+        </div>
+
+        <p>
+            Thus, when an appropriate effective exhaust velocity is available,
+        </p>
+
+        <div class="equation">
+        \[
+        \dot m_p(t)
+        =
+        \frac{T(t)}{V_{\mathrm{eq}}}.
+        \]
+        </div>
+
+        <p>
+            The ideal rocket equation provides the corresponding relationship
+            between mass ratio and ideal velocity increment:
+        </p>
+
+        <div class="equation">
+        \[
+        \Delta V_{\mathrm{ideal}}
+        =
+        V_{\mathrm{eq}}
+        \ln
+        \left(
+        \frac{m_0}{m_f}
+        \right).
+        \]
+        \]
+
+        <p>
+            This is an idealized propulsion relation; the actual trajectory
+            velocity is lower because gravitational and aerodynamic losses
+            consume part of the available velocity increment.
+        </p>
+
+
+        <!-- SECTION 5 -->
+        <h2>5. Thrust Vector</h2>
+
+        <p>
+            Assuming that the thrust vector is aligned with the rocket
+            longitudinal axis, the thrust components are
+        </p>
+
+        <div class="equation">
+        \[
+        T_x=T\cos\theta,
+        \qquad
+        T_z=T\sin\theta.
+        \]
+        </div>
+
+        <p>
+            Therefore,
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf F_T
+        =
+        T
+        \begin{bmatrix}
+        \cos\theta\\
+        \sin\theta
+        \end{bmatrix}.
+        \]
+        </div>
+
+        <p>
+            During the initial rail-constrained portion of the flight,
+            \(\theta\) can be treated as the launch-rail angle. After rail exit,
+            the flight-path angle evolves according to the translational
+            dynamics.
+        </p>
+
+
+        <!-- SECTION 6 -->
+        <h2>6. Aerodynamic Drag</h2>
+
+        <p>
+            Aerodynamic drag is one of the dominant non-gravitational forces
+            during the low-altitude flight of a sounding rocket.
+            NASA expresses aerodynamic drag in the standard form
+        </p>
+
+        <div class="equation">
+        \[
+        D=
+        \frac{1}{2}
+        \rho
+        V^2
+        C_D
+        A,
+        \]
+        </div>
+
+        <p>
+            where
+        </p>
+
+        <ul>
+            <li>\(\rho\) is atmospheric density,</li>
+            <li>\(V\) is rocket airspeed,</li>
+            <li>\(C_D\) is the drag coefficient, and</li>
+            <li>\(A\) is the reference cross-sectional area.</li>
+        </ul>
+
+        <p>
+            The drag vector acts opposite to the velocity vector:
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf F_D
+        =
+        -\frac{1}{2}
+        \rho
+        C_D
+        A
+        V\mathbf v.
+        \]
+        </div>
+
+        <p>
+            This vector form is particularly convenient for numerical
+            integration because it automatically applies drag opposite to the
+            instantaneous direction of motion.
+        </p>
+
+
+        <!-- SECTION 7 -->
+        <h2>7. Mach-Dependent Drag Coefficient</h2>
+
+        <p>
+            For a realistic sounding-rocket simulation, \(C_D\) should not
+            necessarily be treated as constant.
+        </p>
+
+        <p>
+            The Mach number is
+        </p>
+
+        <div class="equation">
+        \[
+        M=
+        \frac{V}{a},
+        \]
+        </div>
+
+        <p>
+            where \(a\) is the local speed of sound:
+        </p>
+
+        <div class="equation">
+        \[
+        a=
+        \sqrt{\gamma R T}.
+        \]
+        </div>
+
+        <p>
+            A practical aerodynamic model therefore uses a lookup table
+        </p>
+
+        <div class="equation">
+        \[
+        C_D=C_D(M).
+        \]
+        </div>
+
+        <p>
+            The drag coefficient can be obtained from wind-tunnel measurements,
+            CFD, or a validated aerodynamic model. For a first simulation,
+            a representative constant \(C_D\) can be used, followed by a
+            Mach-dependent model for higher-fidelity analysis.
+        </p>
+
+
+        <!-- SECTION 8 -->
+        <h2>8. Atmospheric Model</h2>
+
+        <p>
+            Since the intended trajectory remains within the lower atmosphere,
+            atmospheric density changes significantly enough that assuming
+            constant density introduces a measurable error.
+        </p>
+
+        <p>
+            A standard atmospheric model can be used to obtain
+            \(T(h)\), \(p(h)\), and \(\rho(h)\). The U.S. Standard Atmosphere
+            1976 provides atmospheric properties over a wide altitude range and
+            is commonly used for trajectory and flight-dynamics simulations.
+           
+        </p>
+
+        <p>
+            For the lower atmosphere, the temperature can be approximated by
+        </p>
+
+        <div class="equation">
+        \[
+        T(h)=T_0-Lh,
+        \]
+        </div>
+
+        <p>
+            where \(L\) is the temperature lapse rate.
+        </p>
+
+        <p>
+            The pressure is obtained from
+        </p>
+
+        <div class="equation">
+        \[
+        p(h)=
+        p_0
+        \left(
+        \frac{T(h)}{T_0}
+        \right)^{\frac{g_0M_a}{RL}},
+        \]
+        </div>
+
+        <p>
+            and density follows from the ideal-gas equation:
+        </p>
+
+        <div class="equation">
+        \[
+        \rho(h)=
+        \frac{p(h)}
+        {R_{\mathrm{air}}T(h)}.
+        \]
+        </div>
+
+        <p>
+            NASA also provides equivalent metric atmospheric curve fits in
+            which pressure and temperature are functions of altitude and
+            density is obtained from the equation of state.
+        </p>
+
+
+        <!-- SECTION 9 -->
+        <h2>9. Gravity Variation</h2>
+
+        <p>
+            For a trajectory of only \(1-1.5~\mathrm{km}\), using
+            \(g=9.80665~\mathrm{m/s^2}\) is normally an excellent first
+            approximation.
+        </p>
+
+        <p>
+            For a more complete trajectory model, gravitational acceleration
+            can be expressed as
+        </p>
+
+        <div class="equation">
+        \[
+        g(h)=
+        g_0
+        \left(
+        \frac{R_E}{R_E+h}
+        \right)^2,
+        \]
+        </div>
+
+        <p>
+            where \(R_E\) is the mean Earth radius.
+        </p>
+
+        <p>
+            At a few kilometres of altitude, the variation is small, but using
+            \(g(h)\) makes the model physically consistent and becomes useful
+            when the same simulation framework is later extended to higher
+            altitude vehicles.
+        </p>
+
+
+        <!-- SECTION 10 -->
+        <h2>10. Complete 2D Equations of Motion</h2>
+
+        <p>
+            Combining thrust, drag and gravity gives the translational
+            equations
+        </p>
+
+        <div class="equation">
+        \[
+        m\frac{dv_x}{dt}
+        =
+        T\cos\theta
+        -
+        \frac{1}{2}
+        \rho C_D A Vv_x,
+        \]
+        </div>
+
+        <div class="equation">
+        \[
+        m\frac{dv_z}{dt}
+        =
+        T\sin\theta
+        -
+        \frac{1}{2}
+        \rho C_D A Vv_z
+        -
+        mg.
+        \]
+        </div>
+
+        <p>
+            The position equations are
+        </p>
+
+        <div class="equation">
+        \[
+        \frac{dx}{dt}=v_x
+        \]
+        </div>
+
+        <div class="equation">
+        \[
+        \frac{dz}{dt}=v_z.
+        \]
+        </div>
+
+        <p>
+            with
+        </p>
+
+        <div class="equation">
+        \[
+        V=
+        \sqrt{v_x^2+v_z^2}.
+        \]
+        </div>
+
+        <p>
+            After burnout,
+        \(T=0\), and the equations automatically reduce to the
+            ballistic-plus-drag equations.
+        </p>
+
+
+        <!-- SECTION 11 -->
+        <h2>11. Flight-Path Angle</h2>
+
+        <p>
+            After the rocket leaves the launch rail, the flight-path angle
+            can be obtained directly from the velocity components:
+        </p>
+
+        <div class="equation">
+        \[
+        \gamma=
+        \tan^{-1}
+        \left(
+        \frac{v_z}{v_x}
+        \right).
+        \]
+        </div>
+
+        <p>
+            The trajectory therefore becomes
+        </p>
+
+        <div class="equation">
+        \[
+        \dot{x}=V\cos\gamma,
+        \qquad
+        \dot{z}=V\sin\gamma.
+        \]
+        </div>
+
+        <p>
+            This representation is particularly useful for plotting the
+            trajectory in the familiar altitude-versus-downrange coordinate
+            system.
+        </p>
+
+
+        <!-- SECTION 12 -->
+        <h2>12. Launch-Rail Dynamics</h2>
+
+        <p>
+            The rocket is constrained by the launch rail until rail exit.
+            During this interval, the rocket velocity is approximately aligned
+            with the rail.
+        </p>
+
+        <p>
+            For a rail angle \(\theta_0\), the simplified one-dimensional
+            equation along the rail is
+        </p>
+
+        <div class="equation">
+        \[
+        m\frac{dV}{dt}
+        =
+        T(t)
+        -
+        D
+        -
+        mg\sin\theta_0.
+        \]
+        </div>
+
+        <p>
+            The corresponding rail position is
+        </p>
+
+        <div class="equation">
+        \[
+        \frac{ds}{dt}=V.
+        \]
+        </div>
+
+        <p>
+            The simulation switches to free-flight dynamics once
+        \[
+        s\geq L_{\mathrm{rail}}.
+        \]
+        </p>
+
+
+        <!-- SECTION 13 -->
+        <h2>13. Numerical Integration</h2>
+
+        <p>
+            The equations do not generally possess a convenient closed-form
+            solution because thrust, mass, atmospheric density, drag
+            coefficient, and velocity all vary with time.
+        </p>
+
+        <p>
+            Consequently, numerical integration is used.
+            A fourth-order Runge-Kutta method can be written as
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf X_{k+1}
+        =
+        \mathbf X_k+
+        \frac{\Delta t}{6}
+        \left(
+        \mathbf k_1+
+        2\mathbf k_2+
+        2\mathbf k_3+
+        \mathbf k_4
+        \right),
+        \]
+        </div>
+
+        <p>
+            where
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf k_1=f(t_k,\mathbf X_k),
+        \]
+        \[
+        \mathbf k_2=
+        f\left(
+        t_k+\frac{\Delta t}{2},
+        \mathbf X_k+\frac{\Delta t}{2}\mathbf k_1
+        \right),
+        \]
+        \[
+        \mathbf k_3=
+        f\left(
+        t_k+\frac{\Delta t}{2},
+        \mathbf X_k+\frac{\Delta t}{2}\mathbf k_2
+        \right),
+        \]
+        \[
+        \mathbf k_4=
+        f(t_k+\Delta t,\mathbf X_k+\Delta t\mathbf k_3).
+        \]
+        </div>
+
+        <p>
+            For a short-duration sounding-rocket flight, a sufficiently small
+            integration step is important during motor ignition, rapid
+            acceleration and burnout.
+        </p>
+
+
+        <!-- SECTION 14 -->
+        <h2>14. Detecting Apogee</h2>
+
+        <p>
+            Apogee occurs when the vertical component of velocity changes sign.
+            Therefore, the apogee condition is
+        </p>
+
+        <div class="equation">
+        \[
+        v_z(t_a)=0.
+        \]
+        </div>
+
+        <p>
+            Numerically, if
+        </p>
+
+        <div class="equation">
+        \[
+        v_z(t_k)>0
+        \qquad\text{and}\qquad
+        v_z(t_{k+1})\leq0,
+        \]
+        </div>
+
+        <p>
+            then the simulation has crossed apogee.
+        </p>
+
+        <p>
+            A simple interpolation gives an estimate of the exact apogee time:
+        </p>
+
+        <div class="equation">
+        \[
+        t_a
+        \approx
+        t_k+
+        \frac{v_{z,k}}
+        {v_{z,k}-v_{z,k+1}}
+        \Delta t.
+        \]
+        </div>
+
+        <p>
+            The corresponding altitude is then obtained by interpolating
+            \(z(t)\).
+        </p>
+
+
+        <!-- SECTION 15 -->
+        <h2>15. Key Performance Parameters</h2>
+
+        <p>
+            A standard sounding-rocket trajectory simulation should report at
+            least the following quantities:
+        </p>
+
+        <div class="wiki-note">
+            <strong>Primary outputs:</strong>
+            maximum altitude, time to apogee, burnout altitude, burnout
+            velocity, maximum velocity, maximum acceleration, downrange
+            displacement, and total flight time.
+        </div>
+
+        <p>
+            The maximum velocity is
+        </p>
+
+        <div class="equation">
+        \[
+        V_{\max}
+        =
+        \max_t
+        \sqrt{v_x^2+v_z^2}.
+        \]
+        </div>
+
+        <p>
+            The maximum acceleration is
+        </p>
+
+        <div class="equation">
+        \[
+        a_{\max}
+        =
+        \max_t
+        \left\|
+        \frac{d\mathbf v}{dt}
+        \right\|.
+        \]
+        </div>
+
+        <p>
+            The maximum dynamic pressure is
+        </p>
+
+        <div class="equation">
+        \[
+        q=
+        \frac{1}{2}\rho V^2,
+        \qquad
+        q_{\max}=\max_t q.
+        \]
+        </div>
+
+        <p>
+            Dynamic pressure is especially useful when evaluating aerodynamic
+            loading on a slender sounding rocket.
+        </p>
+
+
+        <!-- SECTION 16 -->
+        <h2>16. Representative VSLV-Class Simulation Architecture</h2>
+
+        <p>
+            For a VSLV-type student sounding-rocket simulation targeting
+            approximately \(1-1.5~\mathrm{km}\), the model can be organized
+            into five coupled subsystems:
+        </p>
+
+        <ol>
+            <li><strong>Propulsion:</strong> \(T(t)\), propellant mass flow and burnout.</li>
+            <li><strong>Mass Properties:</strong> \(m(t)\), center of gravity and inertia.</li>
+            <li><strong>Aerodynamics:</strong> \(C_D(M)\), reference area and drag.</li>
+            <li><strong>Atmosphere:</strong> \(\rho(h)\), \(T(h)\), \(p(h)\) and \(a(h)\).</li>
+            <li><strong>Dynamics:</strong> translational equations and numerical integration.</li>
+        </ol>
+
+        <p>
+            The computational architecture can therefore be represented as
+        </p>
+
+        <div class="equation">
+        \[
+        T(t)
+        \rightarrow
+        \boxed{\text{Propulsion}}
+        \rightarrow
+        m(t)
+        \]
+        </div>
+
+        <div class="equation">
+        \[
+        \left[
+        T(t),m(t),C_D(M),A,\rho(h),g(h)
+        \right]
+        \rightarrow
+        \boxed{\text{6/3-DOF Dynamics}}
+        \rightarrow
+        \left[
+        x,z,v_x,v_z
+        \right].
+        \]
+        </div>
+
+        <p>
+            The trajectory is then obtained by integrating this state forward
+            in time.
+        </p>
+
+
+        <!-- SECTION 17 -->
+        <h2>17. Flight Phases</h2>
+
+        <p>
+            The complete flight can be divided into several physical phases.
+        </p>
+
+        <h3>17.1 Ignition and Rail Phase</h3>
+
+        <p>
+            The motor develops thrust while the rocket remains mechanically
+            constrained by the launch rail. The primary objective of this phase
+            is to establish sufficient velocity before rail exit.
+        </p>
+
+        <h3>17.2 Powered Flight</h3>
+
+        <p>
+            After rail exit, the rocket accelerates under the combined action
+            of thrust, drag and gravity:
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf a
+        =
+        \frac{\mathbf T+\mathbf D}{m}
+        +
+        \mathbf g.
+        \]
+        </div>
+
+        <h3>17.3 Burnout</h3>
+
+        <p>
+            At \(t=t_b\),
+        </p>
+
+        <div class="equation">
+        \[
+        T(t_b)=0.
+        \]
+        </div>
+
+        <p>
+            The rocket then enters the ballistic coast phase.
+        </p>
+
+        <h3>17.4 Coast to Apogee</h3>
+
+        <p>
+            During ascent after burnout, the vertical velocity decreases due
+            primarily to gravity and aerodynamic drag until
+        </p>
+
+        <div class="equation">
+        \[
+        v_z=0.
+        \]
+        </div>
+
+        <p>
+            This defines apogee.
+        </p>
+
+        <h3>17.5 Descent</h3>
+
+        <p>
+            After apogee, \(v_z<0\). If the rocket deploys a recovery system,
+            the aerodynamic model must be changed to represent the parachute
+            configuration.
+        </p>
+
+
+        <!-- SECTION 18 -->
+        <h2>18. Simplified Analytical Check</h2>
+
+        <p>
+            Before trusting a numerical simulation, it is useful to compare it
+            with an idealized ballistic model.
+        </p>
+
+        <p>
+            If the rocket leaves the powered phase with purely vertical velocity
+            \(V_b\), and drag is neglected, the additional altitude above
+            burnout is approximately
+        </p>
+
+        <div class="equation">
+        \[
+        \Delta h_{\mathrm{coast}}
+        =
+        \frac{V_b^2}{2g}.
+        \]
+        </div>
+
+        <p>
+            The ideal time from burnout to apogee is
+        </p>
+
+        <div class="equation">
+        \[
+        t_{\mathrm{coast}}
+        =
+        \frac{V_b}{g}.
+        \]
+        </div>
+
+        <p>
+            Thus the approximate apogee becomes
+        </p>
+
+        <div class="equation">
+        \[
+        h_{\max}
+        \approx
+        h_b+
+        \frac{V_b^2}{2g}.
+        \]
+        </div>
+
+        <p>
+            These expressions are not expected to reproduce the real trajectory
+            exactly because aerodynamic drag has been neglected, but they provide
+            an important sanity check. NASA gives the same fundamental ballistic
+            relationship for vertical motion.
+        </p>
+
+
+        <!-- SECTION 19 -->
+        <h2>19. From 3-DOF to 6-DOF</h2>
+
+        <p>
+            A 3-DOF model treats the rocket primarily as a point mass.
+            A higher-fidelity VSLV simulation can instead use a full
+            six-degree-of-freedom rigid-body model.
+        </p>
+
+        <p>
+            The translational state becomes
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf X_T=
+        \begin{bmatrix}
+        \mathbf r\\
+        \mathbf v
+        \end{bmatrix},
+        \]
+        </div>
+
+        <p>
+            while rotational motion is described using angular velocity
+            \(\boldsymbol\omega\) and an attitude representation such as
+            quaternions:
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf q=
+        \begin{bmatrix}
+        q_0&q_1&q_2&q_3
+        \end{bmatrix}^{T}.
+        \]
+        </div>
+
+        <p>
+            The rotational dynamics are governed by Euler's rigid-body equation:
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf I\dot{\boldsymbol\omega}
+        +
+        \boldsymbol\omega
+        \times
+        \left(
+        \mathbf I\boldsymbol\omega
+        \right)
+        =
+        \mathbf M.
+        \]
+        </div>
+
+        <p>
+            This introduces aerodynamic moments, thrust misalignment,
+            center-of-gravity motion, inertia variation and control-system
+            dynamics.
+        </p>
+
+        <p>
+            NASA's POST and related flight-dynamics tools support both 3-DOF
+            and 6-DOF trajectory formulations, illustrating the natural
+            progression from point-mass trajectory analysis to full vehicle
+            dynamics.
+        </p>
+
+
+        <!-- SECTION 20 -->
+        <h2>20. Simulation Workflow</h2>
+
+        <p>
+            A practical computational workflow is therefore:
+        </p>
+
+        <div class="equation">
+        \[
+        \boxed{
+        \text{Rocket Parameters}
+        }
+        \rightarrow
+        \boxed{
+        T(t),m(t),C_D(M)
+        }
+        \rightarrow
+        \boxed{
+        \rho(h),T_{\mathrm{atm}}(h),g(h)
+        }
+        \rightarrow
+        \boxed{
+        \text{Equations of Motion}
+        }
+        \rightarrow
+        \boxed{
+        \text{Numerical Integration}
+        }
+        \rightarrow
+        \boxed{
+        \text{Trajectory}
+        }
+        }
+        \]
+        </div>
+
+        <p>
+            The resulting state history can then be used to generate:
+        </p>
+
+        <ul>
+            <li>Altitude vs. time</li>
+            <li>Downrange distance vs. time</li>
+            <li>Altitude vs. downrange trajectory</li>
+            <li>Velocity vs. time</li>
+            <li>Acceleration vs. time</li>
+            <li>Dynamic pressure vs. time</li>
+            <li>Mach number vs. time</li>
+            <li>Apogee and burnout markers</li>
+        </ul>
+
+
+        <!-- SECTION 21 -->
+        <h2>21. Validation Against Flight-Computer Data</h2>
+
+        <p>
+            A particularly useful extension for a student sounding rocket is
+            comparing the simulated trajectory against the onboard flight
+            computer.
+        </p>
+
+        <p>
+            If the flight computer contains an IMU and barometric pressure
+            sensor, the measured state can be compared with the simulated
+            trajectory:
+        </p>
+
+        <div class="equation">
+        \[
+        \mathbf X_{\mathrm{sim}}(t)
+        \quad\text{vs.}\quad
+        \mathbf X_{\mathrm{meas}}(t).
+        \]
+        </div>
+
+        <p>
+            The altitude error can be defined as
+        </p>
+
+        <div class="equation">
+        \[
+        e_h(t)
+        =
+        h_{\mathrm{sim}}(t)
+        -
+        h_{\mathrm{meas}}(t).
+        \]
+        </div>
+
+        <p>
+            Similarly, the root-mean-square altitude error is
+        </p>
+
+        <div class="equation">
+        \[
+        e_{\mathrm{RMS}}
+        =
+        \sqrt{
+        \frac{1}{N}
+        \sum_{k=1}^{N}
+        \left(
+        h_{\mathrm{sim},k}
+        -
+        h_{\mathrm{meas},k}
+        \right)^2
+        }.
+        \]
+        </div>
+
+        <p>
+            This converts the trajectory simulator from a purely predictive
+            model into a system-identification and flight-validation tool.
+        </p>
+
+
+        <!-- CONCLUSION -->
+        <h2>22. Conclusion</h2>
+
+        <p>
+            A standard sounding-rocket trajectory simulation can be built from
+            a relatively compact mathematical model. The essential dynamics are
+            governed by time-varying mass, thrust, aerodynamic drag,
+            atmospheric density and gravity.
+        </p>
+
+        <p>
+            For a VSLV-class student sounding rocket targeting approximately
+            \(1-1.5~\mathrm{km}\), the recommended progression is to first
+            establish a validated 3-DOF model using the actual motor
+            thrust-time data, measured vehicle mass and experimentally or
+            computationally determined aerodynamic coefficients.
+        </p>
+
+        <p>
+            Once this model reproduces flight data satisfactorily, the same
+            framework can be extended to a 6-DOF rigid-body simulation with
+            attitude dynamics, aerodynamic moments, wind, sensor models and
+            flight-computer estimation.
+        </p>
+
+        <div class="wiki-note">
+            <strong>Key idea:</strong>
+            The trajectory is not determined by thrust alone. A realistic
+            sounding-rocket trajectory emerges from the coupled interaction of
+            propulsion, changing mass, gravity, atmospheric density,
+            aerodynamics and the rocket's initial conditions.
+        </div>
+
+    </div>
+
+
+    <!-- SIDEBAR -->
+    <div class="wiki-sidebar">
+
+        <!-- INFOBOX -->
+        <div class="wiki-infobox">
+
+            <h3>Sounding Rocket</h3>
+
+            <table>
+                <tr>
+                    <td>Vehicle class</td>
+                    <td>VSLV-type</td>
+                </tr>
+
+                <tr>
+                    <td>Mission type</td>
+                    <td>Suborbital</td>
+                </tr>
+
+                <tr>
+                    <td>Target altitude</td>
+                    <td>1–1.5 km</td>
+                </tr>
+
+                <tr>
+                    <td>Propulsion</td>
+                    <td>Solid motor</td>
+                </tr>
+
+                <tr>
+                    <td>Motor class</td>
+                    <td>K-class</td>
+                </tr>
+
+                <tr>
+                    <td>Dynamics model</td>
+                    <td>3-DOF</td>
+                </tr>
+
+                <tr>
+                    <td>Forces</td>
+                    <td>Thrust + Drag + Gravity</td>
+                </tr>
+
+                <tr>
+                    <td>Atmosphere</td>
+                    <td>Standard Atmosphere</td>
+                </tr>
+
+                <tr>
+                    <td>Integrator</td>
+                    <td>RK4</td>
+                </tr>
+
+                <tr>
+                    <td>Primary output</td>
+                    <td>Altitude / Trajectory</td>
+                </tr>
+            </table>
+
+        </div>
+
+
+        <!-- FIGURE -->
+        <div class="wiki-fig">
+            <img src="../assets/images/blogs/sounding-rocket-trajectory.png"
+                 alt="Sounding rocket trajectory diagram">
+
+            <div class="wiki-fig-caption">
+                Simplified sounding-rocket trajectory showing powered flight,
+                burnout, ballistic coast and apogee.
+            </div>
+        </div>
+
+
+        <!-- FIGURE -->
+        <div class="wiki-fig">
+            <img src="../assets/images/blogs/rocket-forces.png"
+                 alt="Rocket forces diagram">
+
+            <div class="wiki-fig-caption">
+                Principal forces acting on a sounding rocket during atmospheric
+                flight: thrust, aerodynamic drag and gravity.
+            </div>
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+</body>
+</html>
