@@ -64,7 +64,7 @@
              whereas standalone articulated robotic arms provide greater dexterity but are often restricted by their workspace and mechanical configuration. <br>
 
             To address these limitations, a hybrid gantry–robotic manipulator was developed. The system integrates a two-degree-of-freedom (2-DOF) Cartesian gantry with a three-degree-of-freedom (3-DOF) inverted robotic arm. 
-            The resulting architecture combines large-area planar positioning with localized angular and vertical manipulation. <br>
+            The resulting architecture combines large-area planar positioning with localized angular and vertical manipulation.
 
             The primary objective of this work was to investigate the application of Nonlinear Model Predictive Control (NMPC) for accurate trajectory tracking of the articulated robotic arm. 
             The study involved developing the robot's kinematic and dynamic models, formulating a constrained nonlinear optimization problem, implementing the controller on hardware, and experimentally evaluating its tracking performance.
@@ -114,7 +114,7 @@
                 </div>
             </div>
           
-          <p> Unlike conventional PID control, which primarily uses instantaneous tracking errors to determine the control action, NMPC predicts the future behaviour of a nonlinear system over a finite prediction horizon.
+          <p style="text-align: justify;"> Unlike conventional PID control, which primarily uses instantaneous tracking errors to determine the control action, NMPC predicts the future behaviour of a nonlinear system over a finite prediction horizon.
 
               At every sampling instant, the controller solves a constrained optimization problem using the dynamic model, reference trajectory, and actuator limitations. 
               Only the first optimized control action is applied to the physical system. The prediction horizon is then shifted forward, and the optimization is repeated using updated feedback measurements. 
@@ -126,14 +126,14 @@
 
             <!-- SECTION -->
             <h2>Hardware Implementation and Controller Integration</h2>
-            <p>Following the mathematical formulation, the NMPC controller was integrated with the physical robotic arm. The optimization algorithm operated on a local computing platform, while a microcontroller facilitated communication with the servo actuators and position feedback system.
+            <p style="text-align: justify;">Following the mathematical formulation, the NMPC controller was integrated with the physical robotic arm. The optimization algorithm operated on a local computing platform, while a microcontroller facilitated communication with the servo actuators and position feedback system.
 
               The control architecture consisted of a model predictor, optimization module, reference trajectory generator, and feedback interface. 
               The microcontroller communicated with the computing platform through a serial interface, enabling the transmission of control commands and acquisition of feedback measurements. </p>
 
 
 
-              <p> The NMPC algorithm was executed at a target update frequency of approximately 20 Hz. The feedback loop continuously updated the estimated joint positions, compared them with the desired reference trajectories, and generated new optimized control commands.
+              <p style="text-align: justify;"> The NMPC algorithm was executed at a target update frequency of approximately 20 Hz. The feedback loop continuously updated the estimated joint positions, compared them with the desired reference trajectories, and generated new optimized control commands.
 
               This implementation allowed the nonlinear predictive controller to operate on a physical robotic system rather than remaining restricted to numerical simulation. </p>
 
@@ -166,7 +166,7 @@
 
             <!-- SECTION -->
             <h2>Conclusion and Future Development</h2>
-            <p>The developed hybrid gantry–robotic manipulator demonstrates the feasibility of implementing nonlinear predictive control on a research-scale robotic platform using relatively low-cost hardware. By integrating a Cartesian positioning system with an articulated inverted robotic arm, the architecture provides both large-area workspace coverage and localized orientation control.
+            <p style="text-align: justify;">The developed hybrid gantry–robotic manipulator demonstrates the feasibility of implementing nonlinear predictive control on a research-scale robotic platform using relatively low-cost hardware. By integrating a Cartesian positioning system with an articulated inverted robotic arm, the architecture provides both large-area workspace coverage and localized orientation control.
 
               The experimental results establish the feasibility of real-time NMPC implementation at approximately 20 Hz, although the measured tracking errors indicate considerable scope for further improvement. Future work will focus on refining the dynamic model, improving joint-position feedback, incorporating actuator calibration and parameter estimation, and optimizing the computational efficiency of the prediction algorithm.
               The platform provides a foundation for developing automated scanning and precision positioning systems, particularly for ultrasonic beam characterization and hydrophone-based acoustic field mapping. Further integration of sensor feedback, adaptive modelling, and advanced trajectory planning could extend the system towards autonomous scanning and closed-loop experimental characterization.</p>
@@ -234,17 +234,6 @@
          -->
   
 
-    </div>
-
-</div>
-
-<div class="wiki-gallery">
-
-    <h2>Project Gallery</h2>
-
-    <div class="wiki-gallery-item">
-        <img src="../assets/images/projects/chroma_team.jpg"
-             alt="VSLV Project">
     </div>
 
 </div>
