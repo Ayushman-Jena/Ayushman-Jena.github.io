@@ -59,27 +59,38 @@
             <!-- INTRO -->
 
            <p style="text-align: justify;">
-           VSLV or VSSUT Satellite Launch Vehicle, as we call it is a project being developed to raise awareness for space science and technology in the country.
-           The project is funded by Indian Space Research Organisation[ISRO] as a part of an MOU with Veer Surendra Sai University of Technoloy, with an objective
-           to train and lay emphasis on the skills that space industry requires. The project itself can be thought of as a generational project meaning it has been running for
-           genrations and with each generation having its own set of 
+             Robotic manipulators used in precision scanning, laboratory automation, and targeted positioning require accurate control of both translational and angular motion. 
+             Conventional Cartesian gantry systems provide large workspace coverage but offer limited orientation control, 
+             whereas standalone articulated robotic arms provide greater dexterity but are often restricted by their workspace and mechanical configuration. <br>
+
+            To address these limitations, a hybrid gantry–robotic manipulator was developed. The system integrates a two-degree-of-freedom (2-DOF) Cartesian gantry with a three-degree-of-freedom (3-DOF) inverted robotic arm. 
+            The resulting architecture combines large-area planar positioning with localized angular and vertical manipulation. <br>
+
+            The primary objective of this work was to investigate the application of Nonlinear Model Predictive Control (NMPC) for accurate trajectory tracking of the articulated robotic arm. 
+            The study involved developing the robot's kinematic and dynamic models, formulating a constrained nonlinear optimization problem, implementing the controller on hardware, and experimentally evaluating its tracking performance.
            </p>
             <p style="text-align: justify;">
-                During my tenure as Student Coordinator at the Veer Surendra Sai Space Innovation Center (VSSSIC) from January 2023 to January 2024, I had the opportunity to work extensively on 
-              VSLV (VSSUT Satellite Launch Vehicle)—a flagship student rocketry initiative recognized by ISRO under the MoU with VSSUT Burla. My contributions to the project were centered around the development of critical onboard intelligence and system-level integration. 
-              I was actively involved in the flight computer development, where the focus was on building a reliable embedded system capable of handling real-time operations during flight. 
-              This included interfacing multiple sensors, ensuring robust data acquisition, and maintaining system stability under dynamic conditions. A significant part of my work revolved around sensor data fusion, combining inputs from IMUs and other
-              onboard sensors to obtain accurate estimates of the rocket’s state parameters such as orientation, velocity, and altitude. This required implementing and testing 
-              algorithms that could operate efficiently within hardware constraints while maintaining precision.  </p>
-            <p style="text-align: justify;">
-              In parallel, I worked on PCB design for the avionics system, translating circuit-level requirements into manufacturable and reliable board layouts. Emphasis was placed on noise minimization, signal integrity, and compact integration of components suitable               for aerospace environments.
+              The developed platform consists of two interconnected subsystems. 
+              The Cartesian gantry provides X–Y translational motion parallel to the operating surface, while the inverted robotic arm provides yaw–pitch–pitch articulation through three independently controlled servo joints.
 
-              On the analytical side, I contributed to algorithm development and MATLAB-based simulations, particularly for modeling flight behavior and validating system performance prior to physical testing. This included rocket trajectory calculations, where                       theoretical models were developed and simulated to predict flight paths, optimize launch parameters, and ensure mission safety.
+              The gantry is actuated using three NEMA 17 stepper motors, with two motors synchronized along the X-axis and one motor driving the Y-axis. 
+              Its positioning system operates in open-loop mode for the present study.
 
-              Overall, my role in VSLV allowed me to work at the intersection of embedded systems, control theory, and aerospace engineering—gaining hands-on experience in designing, simulating, and integrating complex systems for a real-world launch vehicle platform.
+              The articulated arm is mounted on an elevated platform and employs three MG995 servo motors. The first servo controls the base rotation, while the second and third servos control the shoulder and elbow joints, respectively. 
+              This arrangement provides vertical reach and end-effector orientation control within the gantry workspace.
+
+              The hybrid configuration was designed to overcome the limitations of conventional positioning systems by combining wide-area translational movement with localized dexterous manipulation. 
+              Potential applications include ultrasonic beam characterization, hydrophone scanning, acoustic focal alignment, surgical tool positioning, and precision inspection.
             </p>
 
-          <!-- PROJECT VIDEO -->
+            <!-- SECTION -->
+            <h2>Control Approach</h2>
+            <p> The first stage of controller development involved establishing the relationship between joint-space coordinates and Cartesian end-effector positions. 
+                Forward kinematics was primarily used to evaluate Cartesian tracking errors during controller optimization, while inverse kinematics provided feasible initial joint configurations and reference transformations.
+                Accurate dynamic modelling is particularly important for an inverted robotic configuration because gravitational loading, inertial coupling, and nonlinear joint interactions significantly influence the system response.
+            </p>
+
+                    <!-- PROJECT VIDEO -->
           <div class="wiki-video">
               <video controls muted autoplay loop playsinline preload="metadata">
                   <source src="../assets/videos/gantry_pid.mp4" type="video/mp4">
@@ -91,19 +102,35 @@
               </div>
           </div>
 
-            <!-- EQUATION -->
-            <div class="equation">
-            \[
-            \nabla^2 p - \frac{1}{c^2} \frac{\partial^2 p}{\partial t^2} = 0
-            \]
-            </div>
+          <p> Unlike conventional PID control, which primarily uses instantaneous tracking errors to determine the control action, NMPC predicts the future behaviour of a nonlinear system over a finite prediction horizon.
+
+              At every sampling instant, the controller solves a constrained optimization problem using the dynamic model, reference trajectory, and actuator limitations. 
+              Only the first optimized control action is applied to the physical system. The prediction horizon is then shifted forward, and the optimization is repeated using updated feedback measurements. 
+              This process is known as receding-horizon control. 
+          
+              The primary advantage of this approach is its ability to incorporate nonlinear dynamics and actuator constraints directly into the optimization process, 
+              making it particularly suitable for robotic manipulators with coupled joints and gravity-dependent motion.</p>
+
 
             <!-- SECTION -->
-            <h2>1. Vanadium</h2>
-            <p>First ever student led rocket that I worked on in the year 2022 guided by my seniors and professors. Named "Vanadium" because of it's atomic number 23 representing the passing-out batch of 2023,
-            who were leading the project at the time. I was a very new face, in the team at that time and had the opportunity to work on Avionics, flight computers and telemetry.  </p>
+            <h2>Hardware Implementation and Controller Integration</h2>
+            <p>Following the mathematical formulation, the NMPC controller was integrated with the physical robotic arm. The optimization algorithm operated on a local computing platform, while a microcontroller facilitated communication with the servo actuators and position feedback system.
 
-                    <!-- PROJECT VIDEO -->
+              The control architecture consisted of a model predictor, optimization module, reference trajectory generator, and feedback interface. 
+              The microcontroller communicated with the computing platform through a serial interface, enabling the transmission of control commands and acquisition of feedback measurements. <br>
+
+              The NMPC algorithm was executed at a target update frequency of approximately 20 Hz. The feedback loop continuously updated the estimated joint positions, compared them with the desired reference trajectories, and generated new optimized control commands.
+
+              This implementation allowed the nonlinear predictive controller to operate on a physical robotic system rather than remaining restricted to numerical simulation. </p>
+
+            <!-- SECTION -->
+            <h2>Conclusion and Future Development</h2>
+            <p>The developed hybrid gantry–robotic manipulator demonstrates the feasibility of implementing nonlinear predictive control on a research-scale robotic platform using relatively low-cost hardware. By integrating a Cartesian positioning system with an articulated inverted robotic arm, the architecture provides both large-area workspace coverage and localized orientation control.
+
+              The experimental results establish the feasibility of real-time NMPC implementation at approximately 20 Hz, although the measured tracking errors indicate considerable scope for further improvement. Future work will focus on refining the dynamic model, improving joint-position feedback, incorporating actuator calibration and parameter estimation, and optimizing the computational efficiency of the prediction algorithm.
+              The platform provides a foundation for developing automated scanning and precision positioning systems, particularly for ultrasonic beam characterization and hydrophone-based acoustic field mapping. Further integration of sensor feedback, adaptive modelling, and advanced trajectory planning could extend the system towards autonomous scanning and closed-loop experimental characterization.</p>
+
+                              <!-- PROJECT VIDEO -->
           <div class="wiki-video">
               <video controls muted autoplay loop playsinline preload="metadata">
                   <source src="../assets/videos/gantry_nmpc.mp4" type="video/mp4">
@@ -114,15 +141,6 @@
                   5 DOF Robotic Gantry with standard NMPC control.
               </div>
           </div>
-
-            <!-- SECTION -->
-            <h2>2. Random</h2>
-            <p>This was the 2nd rocket that i had worked on, in the follwowing year 2023 named "Random" completely out of fun, cause I remember someone shared the moon knight meme "Random BullSh*t Go!!" and 
-              it kind of stuck with the team at the time ;) I learnt a lot during that phase, again diving deeper into the field of avionics and developing active datalogging system for the rocket. </p>
-
-            <!-- SECTION -->
-            <h2>3. Chromakrut</h2>
-            <p>Explanation here...</p>
 
             <!-- NOTE -->
             <div class="wiki-note">
@@ -137,8 +155,8 @@
 
             <!-- INFOBOX -->
             <div class="wiki-infobox">
-                <img src="../assets/images/projects/avionics.jpg">
-                <div class="wiki-fig-caption">VSLV Avionics</div>
+                <img src="../assets/images/projects/gantry_block.png">
+                <div class="wiki-fig-caption">Gantry Manipulator Block Diagram</div>
 <!--
                 <table>
                     <tr><td>Parameter</td><td>Value</td></tr>
@@ -150,10 +168,10 @@
 
             <!-- FIGURE -->
             <div class="wiki-fig">
-                <img src="../assets/images/projects/VSLV Schema.jpeg">
-                <div class="wiki-fig-caption">ChromaKrut Schematic View</div>
+                <img src="../assets/images/projects/manipulator.png">
+                <div class="wiki-fig-caption">3 DOF inverted Manipulator</div>
             </div>
-            <!-- SIDE VIDEO -->
+            <!-- SIDE VIDEO 
             <div class="wiki-fig wiki-side-video">
                 <video controls muted autoplay loop playsinline preload="metadata">
                     <source src="../assets/videos/VSLV_liftoff.mp4" type="video/mp4">
@@ -164,7 +182,7 @@
                     VSLV Chromakrut Lift Off!!
                 </div>
 
-               <!-- SIDE VIDEO -->
+               <!-- SIDE VIDEO 
             <div class="wiki-fig wiki-side-video">
                 <video controls muted autoplay loop playsinline preload="metadata">
                     <source src="../assets/videos/VSLV_recovery.mp4" type="video/mp4">
@@ -176,8 +194,11 @@
                 </div>
               
             </div>
+          
+              
 
         </div>
+         -->
   
 
     </div>
