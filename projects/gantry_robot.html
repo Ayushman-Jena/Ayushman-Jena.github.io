@@ -69,6 +69,20 @@
             The primary objective of this work was to investigate the application of Nonlinear Model Predictive Control (NMPC) for accurate trajectory tracking of the articulated robotic arm. 
             The study involved developing the robot's kinematic and dynamic models, formulating a constrained nonlinear optimization problem, implementing the controller on hardware, and experimentally evaluating its tracking performance.
            </p>
+
+           <!-- PROJECT VIDEO -->
+          <div class="wiki-video">
+              <video controls muted autoplay loop playsinline preload="metadata">
+                  <source src="../assets/videos/gantry_final_1.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+          
+              <div class="wiki-video-caption">
+                  Final Gantry Robotic Manipulator Testing and Validation
+              </div>
+          </div>
+
+           <h2>System Modeling</h2>
             <p style="text-align: justify;">
               The developed platform consists of two interconnected subsystems. 
               The Cartesian gantry provides X–Y translational motion parallel to the operating surface, while the inverted robotic arm provides yaw–pitch–pitch articulation through three independently controlled servo joints.
@@ -90,18 +104,16 @@
                 Accurate dynamic modelling is particularly important for an inverted robotic configuration because gravitational loading, inertial coupling, and nonlinear joint interactions significantly influence the system response.
             </p>
 
-                    <!-- PROJECT VIDEO -->
-          <div class="wiki-video">
-              <video controls muted autoplay loop playsinline preload="metadata">
-                  <source src="../assets/videos/gantry_pid.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-              </video>
+                       <!-- IMAGE IN THE MIDDLE -->
+            <div class="wiki-fig">
+                <img src="../assets/images/projects/nmpc_block.png"
+                     alt="NMPC Block">
+            
+                <div class="wiki-fig-caption">
+                    Control Implementation using NMPC.
+                </div>
+            </div>
           
-              <div class="wiki-video-caption">
-                  5 DOF Robotic Gantry with standard PID control.
-              </div>
-          </div>
-
           <p> Unlike conventional PID control, which primarily uses instantaneous tracking errors to determine the control action, NMPC predicts the future behaviour of a nonlinear system over a finite prediction horizon.
 
               At every sampling instant, the controller solves a constrained optimization problem using the dynamic model, reference trajectory, and actuator limitations. 
@@ -119,19 +131,38 @@
               The control architecture consisted of a model predictor, optimization module, reference trajectory generator, and feedback interface. 
               The microcontroller communicated with the computing platform through a serial interface, enabling the transmission of control commands and acquisition of feedback measurements. </p>
 
-                       <!-- IMAGE IN THE MIDDLE -->
-            <div class="wiki-fig">
-                <img src="../assets/images/projects/nmpc_block.png"
-                     alt="NMPC Block">
-            
-                <div class="wiki-fig-caption">
-                    Control Implementation using NMPC.
-                </div>
-            </div>
+
 
               <p> The NMPC algorithm was executed at a target update frequency of approximately 20 Hz. The feedback loop continuously updated the estimated joint positions, compared them with the desired reference trajectories, and generated new optimized control commands.
 
               This implementation allowed the nonlinear predictive controller to operate on a physical robotic system rather than remaining restricted to numerical simulation. </p>
+
+          <!-- PROJECT VIDEOS SIDE BY SIDE -->
+          <div class="wiki-video-container">
+          
+              <div class="wiki-video">
+                  <video controls muted autoplay loop playsinline preload="metadata">
+                      <source src="../assets/videos/gantry_pid.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+          
+                  <div class="wiki-video-caption">
+                      5 DOF Robotic Gantry with standard PID control.
+                  </div>
+              </div>
+          
+              <div class="wiki-video">
+                  <video controls muted autoplay loop playsinline preload="metadata">
+                      <source src="../assets/videos/gantry_nmpc.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+          
+                  <div class="wiki-video-caption">
+                      5 DOF Robotic Gantry with NMPC control.
+                  </div>
+              </div>
+          
+          </div>
 
             <!-- SECTION -->
             <h2>Conclusion and Future Development</h2>
@@ -140,17 +171,6 @@
               The experimental results establish the feasibility of real-time NMPC implementation at approximately 20 Hz, although the measured tracking errors indicate considerable scope for further improvement. Future work will focus on refining the dynamic model, improving joint-position feedback, incorporating actuator calibration and parameter estimation, and optimizing the computational efficiency of the prediction algorithm.
               The platform provides a foundation for developing automated scanning and precision positioning systems, particularly for ultrasonic beam characterization and hydrophone-based acoustic field mapping. Further integration of sensor feedback, adaptive modelling, and advanced trajectory planning could extend the system towards autonomous scanning and closed-loop experimental characterization.</p>
 
-                              <!-- PROJECT VIDEO -->
-          <div class="wiki-video">
-              <video controls muted autoplay loop playsinline preload="metadata">
-                  <source src="../assets/videos/gantry_nmpc.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-              </video>
-          
-              <div class="wiki-video-caption">
-                  5 DOF Robotic Gantry with standard NMPC control.
-              </div>
-          </div>
 
             <!-- NOTE -->
             <div class="wiki-note">
