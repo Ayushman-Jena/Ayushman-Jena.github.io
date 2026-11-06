@@ -1019,3 +1019,39 @@ footer {
     object-fit: cover;
     object-position: center;
 }
+
+
+/* SIDE-BY-SIDE PROJECT VIDEOS */
+.wiki-video-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    margin: 25px 0;
+}
+
+.wiki-video-container .wiki-video {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+}
+
+.wiki-video-container .wiki-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Responsive layout for mobile */
+@media (max-width: 768px) {
+    .wiki-video-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .wiki-video-container .wiki-video {
+        width: 100%;
+    }
+}
