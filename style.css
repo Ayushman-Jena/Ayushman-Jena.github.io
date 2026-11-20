@@ -1056,44 +1056,51 @@ footer {
     }
 }
 
-/* PROJECT IMAGE GALLERY */
-.wiki-image-gallery {
+/* PROJECT MEDIA GALLERY */
+.wiki-media-gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 15px;
-
     width: 100%;
     max-width: 100%;
     margin: 25px 0;
-
     box-sizing: border-box;
 }
 
-.wiki-image-item {
+.wiki-media-item {
     min-width: 0;
-    max-width: 100%;
+    width: 100%;
     overflow: hidden;
 }
 
-.wiki-image-item img {
+/* FIXED MEDIA DIMENSIONS */
+.wiki-media-item img,
+.wiki-media-item video {
     display: block;
     width: 100%;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 300px;
+    object-fit: cover;
     border-radius: 8px;
 }
 
-.wiki-image-caption {
+.wiki-media-caption {
     text-align: center;
     font-size: 13px;
     margin-top: 8px;
     color: #999;
 }
 
-/* Mobile layout */
+/* RESPONSIVE */
 @media (max-width: 650px) {
-    .wiki-image-gallery {
+    .wiki-media-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .wiki-media-item img,
+    .wiki-media-item video {
+        height: 250px;
+    }
+}
         grid-template-columns: 1fr;
     }
 }
