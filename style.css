@@ -1080,7 +1080,7 @@ footer {
     width: 100%;
     max-width: 100%;
     height: auto;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 8px;
 }
 
@@ -1122,7 +1122,7 @@ footer {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .wiki-media-caption {
