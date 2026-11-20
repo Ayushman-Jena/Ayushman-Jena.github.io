@@ -48,7 +48,6 @@
         </div>
         <div class="wiki-meta">
             
-
             <span>Subhransu Ranjan Das</span>
             <span >Vivek Goel</span>  
             <span>Ananya Anuska</span>
@@ -77,38 +76,18 @@
             <!-- INTRO -->
 
            <p style="text-align: justify;">
-                VSLV was one of the most ambitious engineering projects I was involved in during my undergraduate years. Developed as a student rocketry initiative with an MoU with the Indian Space Research Organisation (ISRO), the project provided an opportunity to work on a real-world aerospace system where mechanical design, electronics, embedded systems, power management, communication, control, and systems engineering had to work together.
-                
-                What made the project particularly valuable was that it was not simply about building a rocket. It was about understanding how multiple engineering subsystems interact within a highly constrained and mission-oriented system.
-                
-                My involvement was primarily centred around the electrical and electronics aspects of the project, giving me practical exposure to embedded systems, instrumentation, power electronics, sensor integration, PCB-level electronics, and the challenges associated with designing electronics for a demanding aerospace environment.
+                The development of indigenous space technology and the promotion of early research in aerospace engineering have been important objectives of the collaboration between academic institutions and national space agencies. 
+             With this vision, Veer Surendra Sai University of Technology (VSSUT), Burla, entered into a Memorandum of Understanding (MoU) with the Indian Space Research Organisation (ISRO) to establish the VSSUT Student Launch Vehicle (VSLV) programme. 
+             The initiative aimed to motivate undergraduate students to pursue early careers in space science and technology through practical exposure to rocket design, development, testing, and launch operations.
            </p>
             <p style="text-align: justify;">
-                During my tenure as Student Coordinator at the Veer Surendra Sai Space Innovation Center (VSSSIC) from January 2023 to January 2024, I had the opportunity to work extensively on 
-              VSLV (VSSUT Satellite Launch Vehicle)—a flagship student rocketry initiative recognized by ISRO under the MoU with VSSUT Burla. My contributions to the project were centered around the development of critical onboard intelligence and system-level integration. 
-              I was actively involved in the flight computer development, where the focus was on building a reliable embedded system capable of handling real-time operations during flight. 
-              This included interfacing multiple sensors, ensuring robust data acquisition, and maintaining system stability under dynamic conditions. A significant part of my work revolved around sensor data fusion, combining inputs from IMUs and other
-              onboard sensors to obtain accurate estimates of the rocket’s state parameters such as orientation, velocity, and altitude. This required implementing and testing 
-              algorithms that could operate efficiently within hardware constraints while maintaining precision.  </p>
+               The VSSUT Space Science and Innovation Club (VSSSIC), a student-led technical society, played a central role in coordinating the programme under the guidance of faculty members and scientists. 
+              Initiated in 2017, the project brought together students from different engineering disciplines to develop a functional sounding rocket capable of carrying scientific payloads. 
+              Since its inception, multiple generations of the vehicle have been designed, tested, and improved, with Chromakrut representing the fifth generation of the VSLV programme, developed by the graduating batch of 2024.  </p>
             <p style="text-align: justify;">
-A student rocket development project begins with a mission objective and gradually evolves into a collection of interconnected subsystems.
-
-The overall architecture can be viewed as a combination of:
-
-Structural and mechanical systems
-Propulsion
-Avionics
-Electrical power systems
-Sensors and instrumentation
-Communication
-Embedded control and data acquisition
-Ground-support infrastructure
-
-The challenge is that none of these systems can be designed completely independently.
-
-A change in the mechanical structure can affect electronics packaging. Sensor placement can influence measurements. Power requirements affect battery selection and distribution. Communication requirements influence antenna and electronics design. Similarly, the embedded system has to acquire sensor data reliably while operating within the available computational and electrical resources.
-
-This systems-level perspective was one of the most important lessons from the VSLV project.
+               The broader mission vision extended beyond developing a student rocket. Sounding rockets provide an economical platform for atmospheric meteorological measurements, environmental monitoring, and geographical studies. 
+              Potential applications included atmospheric data collection and LiDAR-based terrain mapping. One of the initial proposals involved mapping the Hirakud Dam reservoir to investigate sediment accumulation (siltation) and changes in reservoir geography over time. 
+              However, before undertaking such scientific missions, it was essential to develop and validate a reliable sounding rocket capable of carrying and recovering scientific payloads.
             </p>
 
           <!-- PROJECT VIDEO -->
@@ -131,87 +110,154 @@ This systems-level perspective was one of the most important lessons from the VS
             </div>
 
             <!-- SECTION -->
-            <h2>1. Vanadium</h2>
-            <p>First ever student led rocket that I worked on in the year 2022 guided by my seniors and professors. Named "Vanadium" because of it's atomic number 23 representing the passing-out batch of 2023,
-            who were leading the project at the time. I was a very new face, in the team at that time and had the opportunity to work on Avionics, flight computers and telemetry. The avionics system forms the electronic nervous system of a rocket.
+            <h2>Avionics and Flight Computer Development</h2>
+            <p>The avionics subsystem was developed by me, along with my teammates Vivek Goel and Subhranshu Ranjan Das. 
+              The primary objective was to develop an independent flight computer capable of monitoring the rocket's flight, transmitting telemetry, recording onboard measurements, 
+              and executing the recovery sequence.</p>
 
-Sensors provide information about the state of the vehicle, while an embedded controller processes this information and manages data acquisition, storage, communication, and other mission functions.
+              <p>A dual-microcontroller architecture was implemented using two Arduino Uno boards. Rather than assigning all computational and communication responsibilities to a single controller, 
+                the system was divided into two functional segments. 
+                Both microcontrollers communicated through a UART serial interface.</p>
 
-Working with embedded electronics introduced me to the practical difference between developing a circuit in isolation and developing electronics that have to operate as part of a complete system.
+              <p>The first Arduino Uno was dedicated to telemetry and real-time flight monitoring. It interfaced with an MPU6050 inertial measurement unit to acquire acceleration and angular velocity data, while a BMP180 barometric pressure 
+                sensor provided atmospheric pressure and altitude measurements. The collected sensor information was transmitted continuously to the Ground Control Station through an NRF wireless communication module. 
+                An externally mounted antenna provided the communication link between the airborne system and the ground station.</p>
 
-Microcontrollers, sensors, communication interfaces, power supplies, signal conditioning, and data acquisition circuits all have to operate reliably together.
+              <p>The second Arduino Uno was responsible for onboard data logging and recovery operations. Sensor measurements, particularly the BMP180 altitude data, were stored using an SD card module 
+                for post-flight analysis. The controller also monitored the flight progression and executed the programmed recovery sequence upon detecting the apogee condition.
 
-This required attention to issues such as voltage levels, current consumption, grounding, noise, communication protocols, timing, sensor calibration, and fault conditions.
-
-The experience also strengthened my interest in embedded systems and eventually influenced several of my later projects involving Arduino, STM32, sensors, motor control, and instrumentation.
-            
-            A rocket generates a large amount of information during its operation.
-
-Sensors can be used to monitor different physical parameters and provide data that can later be used to understand the behaviour of the vehicle.
-
-However, collecting sensor data is more complicated than simply connecting a sensor to a microcontroller.
-
-The complete measurement chain involves:
-
-Physical quantity → Sensor → Signal conditioning → ADC → Embedded processing → Data storage/telemetry
-
-Each stage can introduce errors.
-
-Sensor noise, calibration errors, ADC resolution, sampling rate, electrical interference, timing inaccuracies, and communication failures can all influence the quality of the final data.
-
-This experience helped develop an appreciation for instrumentation as a complete engineering discipline rather than simply a collection of sensors.</p>
+                This segmented architecture provided functional separation between telemetry and recovery operations, improving the organisation and reliability of the onboard electronics.</p>
 
             <!-- SECTION -->
-            <h2>2. Random</h2>
-            <p>This was the 2nd rocket that i had worked on, in the follwowing year 2023 named "Random" completely out of fun, cause I remember someone shared the moon knight meme "Random BullSh*t Go!!" and 
-              it kind of stuck with the team at the time ;) I learnt a lot during that phase, again diving deeper into the field of avionics and developing active datalogging system for the rocket. One of the biggest challenges in an aerospace project is integration.
+            <h2>Telemetry Antenna Design and Development</h2>
+            <p>Reliable wireless communication during flight was essential for monitoring the rocket's altitude, orientation, and operational status. 
+              To improve the telemetry link, a customised Yagi–Uda antenna was designed and developed by Subhranshu Ranjan Das and Ananya Anuska.</p>
 
-A subsystem can function correctly on its own and still fail when connected to the rest of the system.
-
-For this reason, testing needs to progress systematically from individual components to complete subsystems and eventually to the integrated vehicle.
-
-This involves checking electrical interfaces, communication, power distribution, sensor readings, embedded software behaviour, and mechanical integration.
-
-System-level testing also requires thinking about failure modes.
-
-What happens if a sensor stops responding?
-
-What happens if the supply voltage drops?
-
-What happens if communication is interrupted?
-
-What happens if the measured data becomes unreasonable?
-
-These questions shift the engineering mindset from simply asking "Does it work?" to asking "How does it fail, and how can the system respond? </p>
+           <p>The antenna was modelled and simulated using CST Studio Suite, with the design optimised for operation with the NRF telemetry module. The Yagi–Uda configuration consists of a driven element, 
+             reflector, and multiple directors mounted along a supporting boom. 
+             The parasitic elements modify the radiation pattern, providing directional gain towards the intended communication region.
+             Following electromagnetic simulation, the antenna was fabricated and tested with the NRF module to evaluate its communication performance. Its integration into the rocket provided an externally 
+             mounted antenna arrangement for telemetry transmission during flight.
+           </p>
 
             <!-- SECTION -->
-            <h2>3. Chromakrut</h2>
-            <p>The VSLV project was also valuable because it introduced the realities of collaborative engineering.
+            <h2>Structural Design and Mechanical Development</h2>
+           <p>The structural assembly primarily consisted of three major components: the cylindrical fuselage, nose cone, and motor housing. These components were developed to provide mechanical integrity, 
+             aerodynamic stability, and adequate space for the payload and avionics.
+           </p>
 
-A rocket cannot be developed by one discipline working independently. Mechanical, electrical, electronics, software, propulsion, and other teams have to coordinate their designs and interfaces.
+          <p>The fuselage was designed as a cylindrical body with a uniform diameter, determined by the dimensions of the payload, avionics, and propulsion assembly. 
+          PVC was selected as the primary structural material. The external surface was subsequently treated with putty and epoxy resin to obtain a smoother finish and improve surface protection.
 
-This creates a strong need for documentation, version control, testing procedures, interface specifications, and clear communication between teams.
+           The nose cone was designed using SolidWorks and evaluated through ANSYS simulations to investigate its aerodynamic stability and drag characteristics. 
+           Based on the simulation results, the final geometry was selected and fabricated using wood.
+           </p>
 
-The experience provided an early exposure to the engineering practices required when multiple people are simultaneously developing different parts of a complex system.
 
-The association of the project with an ISRO MoU also provided an important academic and technical context, giving the project a connection to India's broader space-technology ecosystem.
-            The most important outcome of the project was not a particular circuit, microcontroller, or software implementation.
+           <p>The propulsion assembly was housed within a dedicated stainless-steel motor enclosure, separated from the remaining fuselage using a solid nylon coupler block. 
+            An internal insulating layer provided thermal protection to the surrounding structure. Three trapezoidal fins were mounted around the motor housing to improve aerodynamic stability during flight.
+            The structural subsystem was developed by Subhankar Panda, Animesh Mohanty, and Suvham Nayak.
+           </p>
 
-It was learning to think about engineering systems as integrated architectures.
+           <h2>Motor Case and Thruster Nozzle Development</h2>
 
-A sensor is not just a sensor. It is part of a measurement chain.
+          <p>The propulsion assembly was one of the most technically demanding components of Chromakrut. 
+             The motor case was fabricated using stainless steel to withstand the elevated temperatures and internal pressures associated with solid-propellant combustion.
+           </p>
 
-A microcontroller is not just a processor. It is part of an embedded system.
+          <p>Its structural design was evaluated using ANSYS simulations to assess the mechanical response under the expected operating conditions. The motor case served as the combustion chamber, accommodating the laboratory-developed propellant grains.
 
-A PCB is not just a collection of components. It is an interface between multiple subsystems.
+            The thruster nozzle was another critical component because it governs the conversion of high-pressure combustion gases into directed exhaust flow. 
+            Its development involved initial analytical formulation followed by CAD modelling and simulation to evaluate the nozzle geometry and expected propulsion performance.
 
-And a rocket is not simply a propulsion system. It is a tightly integrated combination of mechanical, electrical, computational, communication, and control systems.
+            The motor case and nozzle development were primarily undertaken by Animesh Mohanty.
+           </p>
 
-This systems perspective has continued to influence my subsequent work in embedded systems, robotics, control, instrumentation, and intelligent engineering systems.</p>
+           <h2>Solid Propellant Development and Characterisation</h2>
+
+          <p>The solid propellant was another critical aspect of the VSLV programme. Different propellant systems based on fuel and oxidiser combinations were investigated to evaluate their combustion characteristics and expected thrust performance.
+
+            The development involved laboratory-scale characterisation, with experimental observations compared against theoretical predictions and simulation results. Particular attention was given to combustion behaviour, consistency, and the expected performance of the propulsion system.
+           </p>
+
+          <p>Following the validation process, the selected propellant configuration was prepared for integration into the motor assembly under controlled laboratory procedures. 
+            The internal grain geometry was also considered an important design parameter because it influences the exposed burning surface and consequently the thrust-time characteristics of the motor.
+
+             The propulsion subsystem was subsequently evaluated through static testing before being considered for flight integration.
+           </p>
+
+           <h2>Static Testing and Thrust Measurement</h2>
+
+            <p>Before attempting a full rocket launch, the propulsion system was evaluated through a static motor test. The primary objective was to experimentally measure the thrust generated by the motor and compare its performance with the predicted values.
+
+            A dedicated static test stand was collectively designed and developed by the team. The structure was mechanically reinforced, with the motor assembly securely mounted and the test stand anchored to the ground to withstand the forces generated during operation.
+           </p>
+
+          <p>A calibrated strain-gauge-based measurement arrangement was incorporated to record the reaction force generated during motor operation. The acquired measurements provided the thrust-time response, which could subsequently be used to estimate important propulsion parameters.
+
+            A dedicated remote ignition and monitoring arrangement was also developed. The system incorporated a control unit with supply, timing, and ignition functions, alongside a separate remotely operated triggering unit. Wireless NRF communication was incorporated to facilitate remote operation.
+
+             Static testing provided an essential validation stage before the complete propulsion assembly was integrated into the rocket.
+           </p>
+
+           <h2>Recovery System and Full-Body Recovery</h2>
+
+            <p>The recovery subsystem was independently developed by Mohit Agarwal. Unlike conventional sounding rocket recovery arrangements that commonly employ direct ejection mechanisms, Chromakrut incorporated a piston-based deployment system to eject the nose cone and deploy the parachute.
+
+              The mechanism consisted of a piston assembly housed within the upper section of the rocket, immediately below the nose cone and separated from the avionics bay. The piston was supported by nylon structural blocks and designed to provide sufficient mechanical force for nose-cone separation.
+           </p>
+
+          <p>During flight, the onboard flight computer continuously monitored the altitude data. Upon detecting the apogee condition, it initiated the programmed recovery sequence. 
+             The resulting deployment impulse actuated the piston mechanism, separating the nose cone and releasing the parachute.
+
+             This arrangement was intended to achieve controlled recovery of the complete rocket body while protecting the onboard electronics and structural components during descent.
+           </p>
+
+           <h2>System Integration and Pre-Launch Verificationt</h2>
+
+           <p>Since the different subsystems were developed independently by separate teams, integrating them into a single functional vehicle was an important part of the project. My responsibility also involved coordinating the progress of individual divisions, monitoring subsystem compatibility, and minimising integration errors arising from communication gaps between teams.
+
+            The final assembly was therefore carried out collectively. Particular attention was given to the interfaces between the motor housing, fuselage, avionics bay, telemetry antenna, and recovery mechanism.
+           </p>
+
+          <p>Before launch, a comprehensive Go/No-Go assessment was performed. Each subsystem was examined according to its operational importance and the consequences of potential failure. The checks included structural integrity, avionics functionality, telemetry communication, onboard data logging, recovery-system readiness, and overall assembly condition.
+
+            This process ensured that the final launch decision was based on the operational readiness of the integrated vehicle rather than the successful development of individual components alone.
+           </p>
+
+           <h2>Launch-Site Preparation and Flight Operations</h2>
+
+          <p>Launch preparation involved considerably more than assembling and mounting the rocket. Weather conditions were monitored in advance, including wind velocity, wind direction, humidity, and cloud conditions. Regional activities and other potential disturbances were also considered while selecting the launch date.
+
+             Once the date was finalised, the launch site was inspected and prepared. The launch structure was assembled, and the completed rocket was mounted in its designated position..
+           </p>
+
+          <p>The avionics and telemetry team performed final communication and sensor checks, while the remaining team members verified the launch infrastructure and recovery arrangements. Environmental conditions at the launch site were documented before the flight.
+
+            Multiple cameras were positioned at different locations and viewing angles to capture the launch, ascent, and recovery sequence. Once the final safety assessment was completed, the team moved to the designated safe distance based on the established launch-site safety procedures
+           </p>
+
+
+           <p>As the launch captain, I was responsible for the final launch sequence. Following the completion of the Go/No-Go checks and confirmation of team readiness, the launch command was executed.
+           </p>
+
+
+
+           <h2>Mission Control, Telemetry and Post-Flight Data Analysis</h2>
+
+            <p>During flight, the Ground Control Station received telemetry transmitted by the onboard NRF communication system. The transmitted measurements enabled real-time monitoring of altitude, acceleration, and orientation.
+
+            The flight data was used to identify the major flight phases, including ignition, powered ascent, coasting, apogee, and recovery deployment. The ground station provided an immediate view of the vehicle's flight progression, allowing the team to monitor its behaviour throughout the mission.
+           </p>
+
+          <p>Following recovery, the measurements stored on the onboard SD card were retrieved and compared with the live telemetry received at the ground station. This comparison helped identify communication losses, measurement noise, and discrepancies between the transmitted and locally recorded sensor data.
+
+            In addition to the electronic measurements, the camera mounted on the rocket provided visual documentation of the flight. Combining telemetry, onboard data logging, and video recordings enabled a more comprehensive evaluation of the mission.
+           </p>
 
             <!-- NOTE -->
             <div class="wiki-note">
-                <strong>Note:</strong> Important insight here.
+                <strong>Conclusion:</strong> The successful launch of VSLV Chromakrut marked an important milestone in the VSSUT student rocketry programme. Developed by the batch of 2024, the fifth-generation vehicle represented the cumulative experience gained through multiple iterations of design, fabrication, testing, and subsystem integration since the programme's inception in 2017.
             </div>
 
         </div>
@@ -219,32 +265,12 @@ This systems perspective has continued to influence my subsequent work in embedd
 
         <!-- SIDEBAR -->
         <div class="wiki-sidebar">
-
-            <!-- INFOBOX -->
-            <div class="wiki-infobox">
-                <img src="../assets/images/projects/avionics.jpg">
-                <div class="wiki-fig-caption">VSLV Avionics</div>
-<!--
-                <table>
-                    <tr><td>Parameter</td><td>Value</td></tr>
-                    <tr><td>Frequency</td><td>1 MHz</td></tr>
-                </table>
--->              
-            </div>
-  
-
-            <!-- FIGURE -->
-            <div class="wiki-fig">
-                <img src="../assets/images/projects/VSLV Schema.jpeg">
-                <div class="wiki-fig-caption">ChromaKrut Schematic View</div>
-            </div>
             <!-- SIDE VIDEO -->
             <div class="wiki-fig wiki-side-video">
                 <video controls muted autoplay loop playsinline preload="metadata">
                     <source src="../assets/videos/VSLV_liftoff.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-            
                 <div class="wiki-fig-caption">
                     VSLV Chromakrut Lift Off!!
                 </div>
@@ -259,13 +285,23 @@ This systems perspective has continued to influence my subsequent work in embedd
                 <div class="wiki-fig-caption">
                     VSLV Chromakrut Full Body Recovery
                 </div>
-              
             </div>
 
-        </div>
-  
+           </div>
+          
+            <!-- INFOBOX -->
+            <div class="wiki-infobox">
+                <img src="../assets/images/projects/avionics.jpg">
+                <div class="wiki-fig-caption">VSLV Avionics</div>        
+            </div>
 
-    </div>
+                      <!-- FIGURE -->
+            <div class="wiki-fig">
+                <img src="../assets/images/projects/VSLV Schema.jpeg">
+                <div class="wiki-fig-caption">ChromaKrut Schematic View</div>
+            </div>
+
+       </div>
 
 </div>
 
